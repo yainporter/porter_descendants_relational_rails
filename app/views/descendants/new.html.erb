@@ -1,0 +1,28 @@
+<form action="/descendants" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new descendant:</p>
+  <label for="fname">First name:</label><br>
+  <input type="text" name="first_name" id="fname"/><br/>
+  <label for="lname">Last name:</label><br>
+  <input type="text" name="last_name" id="lname"/><br/>
+  <label for="bdate">Birthday:</label><br>
+  <input type="date" name="birthday" id="bdate"/><br/>
+  <p>Allergies?</p>
+  <input type="radio" name="allergies" value="true" id="allergies">
+  <label for="allergies">Yes</label><br>
+  <input type="radio" name="allergies" value="false" id="allergies">
+  <label for="allergies">No</label><br>
+  <label for="lang">Languages:</label><br>
+  <input type="number" name="languages" id="lang"/><br/>
+  <p>Married?</p>
+  <input type="radio" name="married" value="true" id="married">
+  <label for="married">Yes</label><br>
+  <input type="radio" name="married" value="false" id="married">
+  <label for="married">No</label><br>
+  <p>Grandchildren?</p>
+  <input type="radio" name="grandchildren" value="true" id="grandchildren">
+  <label for="grandchildren">Yes</label><br>
+  <input type="radio" name="grandchildren" value="false" id="grandchildren">
+  <label for="grandchildren">No</label><br>
+  <input type="submit">
+</form>
