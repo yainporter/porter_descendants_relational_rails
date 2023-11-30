@@ -21,7 +21,6 @@ RSpec.describe "Missions Index Page", type: :feature do
         spain = Mission.create(mission_name:"Madrid Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
 
         visit "/missions/#{spain.id}"
-        save_and_open_page
 
         expect(page).to have_content(spain.mission_name)
         expect(page).to have_content(spain.mission_language)

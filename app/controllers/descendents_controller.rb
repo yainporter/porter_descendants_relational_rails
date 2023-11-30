@@ -1,3 +1,4 @@
+require 'spec_helper'
 class DescendentsController < ApplicationController
   def index
     @descendents = Descendent.all
@@ -34,6 +35,10 @@ class DescendentsController < ApplicationController
     @descendent = Descendent.find(params[:id])
   end
 
+  def show_missions
+    @descendent = Descendent.find(params[:id])
+    @mission = Mission.find_foreign_key(@descendent)
+  end
   def destroy
 
   end
