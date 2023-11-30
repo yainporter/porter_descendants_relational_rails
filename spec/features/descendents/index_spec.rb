@@ -7,7 +7,6 @@ RSpec.describe "Descendents Index Page", type: :feature do
         rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
 
         visit "/descendents"
-        save_and_open_page
 
         expect(page).to have_content(rusty.first_name)
       end
@@ -20,22 +19,17 @@ RSpec.describe "Descendents Index Page", type: :feature do
         rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
 
         visit "/descendents/#{rusty.id}"
-        save_and_open_page
 
         expect(page).to have_content(rusty.full_name)
       end
     end
   end
 
-  # frozen_string_literal: true
-
   describe "As a user" do
-    describe "When I visit /missions" do
-      it "will show me each mission in the system, including it's attributes" do
-
-        expect(true).to eq(true)
+    describe "When I visit '/descendents/:id/missions" do
+      it "Will show each mission that is associated with that descendent with the mission attributes" do
+        
       end
     end
   end
-
 end

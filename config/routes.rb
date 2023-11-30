@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get "/missions", to: "missions#index"
   get "/missions/new", to: "missions#new"
   post '/missions', to: 'missions#create'
+  get "/missions/:id", to: "missions#show"
 end

@@ -8,7 +8,6 @@ class DescendentsController < ApplicationController
   end
 
   def create
-
     descendent = Descendent.new({
       first_name: params[:first_name],
       last_name: params[:last_name],
