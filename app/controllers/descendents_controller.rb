@@ -1,6 +1,6 @@
-class DescendantsController < ApplicationController
+class DescendentsController < ApplicationController
   def index
-    @descendants = Descendant.all
+    @descendents = Descendent.all
   end
 
   def new
@@ -8,7 +8,8 @@ class DescendantsController < ApplicationController
   end
 
   def create
-    descendant = Descendant.new({
+
+    descendent = Descendent.new({
       first_name: params[:first_name],
       last_name: params[:last_name],
       birthday: params[:birthday],
@@ -17,8 +18,8 @@ class DescendantsController < ApplicationController
       married: params[:married],
       grandchildren: params[:grandchildren]
     })
-    descendant.save
-    
+    descendent.save
+
     redirect_to "/tasks"
   end
 
@@ -31,7 +32,7 @@ class DescendantsController < ApplicationController
   end
 
   def show
-    Descendant.find(params{:id})
+    @descendent = Descendent.find(params[:id])
   end
 
   def destroy

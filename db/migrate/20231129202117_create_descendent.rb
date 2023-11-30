@@ -1,6 +1,6 @@
-class CreateDescendant < ActiveRecord::Migration[7.0]
+class CreateDescendent < ActiveRecord::Migration[7.0]
   def change
-    create_table :descendants do |t|
+    create_table :descendents do |t|
       t.string :first_name
       t.string :last_name
       t.string :birthday
