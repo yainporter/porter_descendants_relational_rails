@@ -94,7 +94,6 @@ RSpec.describe "Descendents Index Page", type: :feature do
         choose("ygrandchildren")
 
         click_button
-        save_and_open_page
 
         expect(page.current_path).to eq("/descendents")
         expect(page).to have_content("Alissa Lines")
@@ -145,6 +144,19 @@ RSpec.describe "Descendents Index Page", type: :feature do
         find("p").click_link("Mission")
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
+      end
+
+      it "Will show me a link top update the parent `Update Parent`" do
+        visit "/descendents/#{@rusty.id}"
+
+        expect(page).to have_content("Update #{@rusty.full_name}'s Info")
+      end
+
+      it "Will take me to '/parents/:id/edit' when I click on 'Update Descendent's Info'" do
+        visit "/descendents/#{@rusty.id}"
+        find(id: "update").click_link("Update #{@rusty.full_name}'s Info")
+        save_and_open_page
+
       end
     end
   end

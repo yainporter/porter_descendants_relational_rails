@@ -23,11 +23,22 @@ class DescendentsController < ApplicationController
   end
 
   def edit
-
+    @descendent = Descendent.find(params[:id])
   end
 
   def update
-
+    descendent = Descendent.find(params[:id])
+    descendent.update({
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      birthday: params[:birthday],
+      allergies: params[:allergies],
+      languages: params[:languages],
+      married: params[:married],
+      grandchildren: params[:grandchildren]
+    })
+    descendent.save
+    redirect_to "descendents/#{descendent.id}"
   end
 
   def show
