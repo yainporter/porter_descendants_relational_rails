@@ -10,10 +10,42 @@ RSpec.describe "Descendents Index Page", type: :feature do
   describe "As a user" do
     describe "when I visit '/descendents'" do
       it "I see the name of each parent in the record system" do
-
         visit "/descendents"
 
         expect(page).to have_content(@rusty.first_name)
+      end
+
+      it "Will show records ordered by recently created" do
+        visit "/descendents"
+
+        expect("Aaron Porter").to appear_before("Rusty Porter", only_text: false)
+      end
+
+      it "Will show when Descendent was created" do
+        visit "/descendents"
+
+        expect(page).to have_content(@aaron[:created_at])
+        expect(page).to have_content(@rusty[:created_at])
+      end
+
+      it "Will have a link at the top of the page that takes me to the Missions Index" do
+        visit "/descendents"
+
+        expect(page).to have_content("Missions Index")
+
+        find('nav').click_link("Missions Index")
+
+        expect(page.current_path).to eq("/missions")
+      end
+
+      it "Will have a link at the top of the page that takes me to the Descendents Index" do
+        visit "/descendents"
+
+        expect(page).to have_content("Descendants Index")
+
+        find('nav').click_link("Descendants Index")
+
+        expect(page.current_path).to eq("/descendents")
       end
     end
   end
@@ -32,6 +64,36 @@ RSpec.describe "Descendents Index Page", type: :feature do
 
         expect(page).to have_content("Number of missions served: 1")
       end
+
+      it "Will have a link at the top of the page that takes me to the Missions Index" do
+        visit "/descendents/#{@rusty.id}"
+
+        expect(page).to have_content("Missions Index")
+
+        find('nav').click_link("Missions Index")
+
+        expect(page.current_path).to eq("/missions")
+      end
+
+      it "Will have a link at the top of the page that takes me to the Descendents Index" do
+        visit "/descendents/#{@rusty.id}"
+
+        expect(page).to have_content("Descendants Index")
+
+        find('nav').click_link("Descendants Index")
+
+        expect(page.current_path).to eq("/descendents")
+      end
+
+      it "Will show me a link to take me to that Descendents mission page" do
+        visit "/descendents/#{@rusty.id}"
+
+        expect(page).to have_content("#{@rusty.full_name}'s Mission")
+
+        find("p").click_link("Mission")
+
+        expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
+      end
     end
   end
 
@@ -48,15 +110,26 @@ RSpec.describe "Descendents Index Page", type: :feature do
         expect(page).to have_content(@italy.members_baptized)
         expect(page).to have_content(@italy.service_mission?)
       end
-    end
-  end
 
-  describe "As a user" do
-    describe "When I visit '/descendents"
-      it "Will show records ordered by recently created and when it was created" do
+      it "Will have a link at the top of the page that takes me to the Missions Index" do
+        visit "/descendents/#{@rusty.id}/missions"
 
-        visit "/descendents"
-        expect("Aaron Porter").to appear_before("Rusty Porter", only_text: false)
+        expect(page).to have_content("Missions Index")
+
+        find('nav').click_link("Missions Index")
+
+        expect(page.current_path).to eq("/missions")
       end
+
+      it "Will have a link at the top of the page that takes me to the Descendents Index" do
+        visit "/descendents/#{@rusty.id}/missions"
+
+        expect(page).to have_content("Descendants Index")
+
+        find('nav').click_link("Descendants Index")
+
+        expect(page.current_path).to eq("/descendents")
+      end
+    end
   end
 end

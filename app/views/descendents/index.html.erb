@@ -1,6 +1,11 @@
+<nav>
+  <a href="/descendents">Descendants Index</a>
+  <a href="/missions">Missions Index</a>
+</nav>
+
 <h1>These are the list of descendants from Marlane & Don Porter:</h1>
 <ul>
   <% @descendents.each do |descendent| %>
-  <li><a href="/descendents/:id"><%= descendent.full_name%></a></li>
+  <li><a href="/descendents/:id"><%= descendent.full_name%></a> - Created at: <%= descendent[:created_at] %></li>
   <% end %>
 </ul>
