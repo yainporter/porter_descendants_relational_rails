@@ -8,7 +8,7 @@ RSpec.describe Descendent, type: :model do
   end
 
   describe "associations" do
-    it {should has_many (:missions)}
+    it {should have_many (:missions)}
   end
 
   it "can combine first and last name for a full name" do

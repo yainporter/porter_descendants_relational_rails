@@ -1,7 +1,6 @@
 class DescendentsController < ApplicationController
   def index
-    @descendents = Descendent.all.sort
-    @descendents = @descendents.reverse
+    @descendents = Descendent.all.order(created_at: :desc)
   end
   def new
 
@@ -38,7 +37,7 @@ class DescendentsController < ApplicationController
       grandchildren: params[:grandchildren]
     })
     descendent.save
-    redirect_to "descendents/#{descendent.id}"
+    redirect_to "/descendents/#{descendent.id}"
   end
 
   def show

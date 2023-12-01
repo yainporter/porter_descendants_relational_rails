@@ -6,7 +6,7 @@
 <form action="/descendents/<%= @descendent.id %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />
-  <p>Edit <%= @descendent.full_name %></p>
+  <h1>Edit <%= @descendent.full_name %>'s Information</h1>
   <label for="fname">First name:</label><br>
   <input type="text" name="first_name" id="fname"/><br/>
   <label for="lname">Last name:</label><br>
@@ -30,5 +30,5 @@
   <label for="grandchildren">Yes</label><br>
   <input type="radio" name="grandchildren" value="false" id="ngrandchildren">
   <label for="grandchildren">No</label><br/>
-  <input type="submit" value="Update <%= @descendant.full_name %>"/>
+  <input type="submit" value="Update <%= @descendent.full_name %>'s Info"/>
 </form>
