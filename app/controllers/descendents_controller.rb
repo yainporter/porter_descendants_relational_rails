@@ -1,9 +1,8 @@
-require 'spec_helper'
 class DescendentsController < ApplicationController
   def index
-    @descendents = Descendent.all.sort_by{|key, value| :created_at}
+    @descendents = Descendent.all.sort
+    @descendents = @descendents.reverse
   end
-
   def new
 
   end
@@ -20,7 +19,7 @@ class DescendentsController < ApplicationController
     })
     descendent.save
 
-    redirect_to "/tasks"
+    redirect_to "/descendents"
   end
 
   def edit

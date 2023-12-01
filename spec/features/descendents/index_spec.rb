@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Descendents Index Page", type: :feature do
   before(:each) do
-    @aaron = Descendent.create(first_name: "Aaron", last_name: "Porter", married: true)
+    @aaron = Descendent.create(first_name: "Aaron", last_name: "Porter", married: true, grandchildren: true)
     @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
     @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
   end
@@ -16,9 +16,12 @@ RSpec.describe "Descendents Index Page", type: :feature do
       end
 
       it "Will show records ordered by recently created" do
+        Descendent.create(first_name: "Yain", last_name: "Porter")
+        Descendent.create(first_name: "Adeline", last_name: "Porter")
         visit "/descendents"
 
-        expect("Aaron Porter").to appear_before("Rusty Porter", only_text: false)
+        expect("Yain Porter").to appear_before("Rusty Porter", only_text: false)
+        expect("Adeline Porter").to appear_before("Yain Porter", only_text: false)
       end
 
       it "Will show when Descendent was created" do
@@ -46,6 +49,55 @@ RSpec.describe "Descendents Index Page", type: :feature do
         find('nav').click_link("Descendants Index")
 
         expect(page.current_path).to eq("/descendents")
+      end
+
+      it "will show me a link to create a 'New Descendent'" do
+        visit "/descendents"
+
+        expect(page).to have_content("New Descendent")
+      end
+
+      it "clicking 'New Descendent' will take me to '/descdendents/new'" do
+        visit "/descendents"
+        find('p').click_link("New Descendent")
+
+        expect(page.current_path).to eq("/descendents/new")
+      end
+    end
+  end
+
+  describe "As a user" do
+    describe "When I visit 'descendents/new'" do
+      it "shows me a form for a new descendent record" do
+        visit "/descendents/new"
+
+        expect(page).to have_content("First name:")
+        expect(page).to have_content("Last name:")
+        expect(page).to have_content("Birthday:")
+        expect(page).to have_content("Allergies?")
+        expect(page).to have_content("Languages:")
+        expect(page).to have_content("Married?")
+        expect(page).to have_content("Grandchildren?")
+        expect(page.has_button?).to be true
+        expect(page).to have_button("Create Descendant")
+        expect(page.has_unchecked_field?). to be true
+      end
+
+      it "creates a new Descendent record sent to /descendents when I fill out the form and click the button" do
+        visit "/descendents/new"
+        fill_in("fname", with: "Alissa")
+        fill_in("lname", with: "Lines")
+        fill_in("lang", with: "0")
+        fill_in("bdate", with: "09/12/1971")
+        choose("yallergies")
+        choose("ymarried")
+        choose("ygrandchildren")
+
+        click_button
+        save_and_open_page
+
+        expect(page.current_path).to eq("/descendents")
+        expect(page).to have_content("Alissa Lines")
       end
     end
   end

@@ -5,7 +5,7 @@
 
 <form action="/descendents" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Enter a new descendant:</p>
+  <p>Enter a new descendent:</p>
   <label for="fname">First name:</label><br>
   <input type="text" name="first_name" id="fname"/><br/>
   <label for="lname">Last name:</label><br>
@@ -13,21 +13,21 @@
   <label for="bdate">Birthday:</label><br>
   <input type="date" name="birthday" id="bdate"/><br/>
   <p>Allergies?</p>
-  <input type="radio" name="allergies" value="true" id="allergies">
+  <input type="radio" name="allergies" value="true" id="yallergies">
   <label for="allergies">Yes</label><br>
-  <input type="radio" name="allergies" value="false" id="allergies">
+  <input type="radio" name="allergies" value="false" id="nallergies">
   <label for="allergies">No</label><br>
   <label for="lang">Languages:</label><br>
   <input type="number" name="languages" id="lang"/><br/>
   <p>Married?</p>
-  <input type="radio" name="married" value="true" id="married">
+  <input type="radio" name="married" value="true" id="ymarried">
   <label for="married">Yes</label><br>
-  <input type="radio" name="married" value="false" id="married">
+  <input type="radio" name="married" value="false" id="nmarried">
   <label for="married">No</label><br>
   <p>Grandchildren?</p>
-  <input type="radio" name="grandchildren" value="true" id="grandchildren">
+  <input type="radio" name="grandchildren" value="true" id="ygrandchildren">
   <label for="grandchildren">Yes</label><br>
-  <input type="radio" name="grandchildren" value="false" id="grandchildren">
-  <label for="grandchildren">No</label><br>
-  <input type="submit">
+  <input type="radio" name="grandchildren" value="false" id="ngrandchildren">
+  <label for="grandchildren">No</label><br/>
+  <input type="submit" value="Create Descendant"/>
 </form>

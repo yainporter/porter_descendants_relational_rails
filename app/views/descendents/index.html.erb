@@ -6,6 +6,8 @@
 <h1>These are the list of descendants from Marlane & Don Porter:</h1>
 <ul>
   <% @descendents.each do |descendent| %>
-  <li><a href="/descendents/:id"><%= descendent.full_name%></a> - Created at: <%= descendent[:created_at] %></li>
+  <li><a href="/descendents/<%= descendent.id %>"><%= descendent.full_name%></a> - Created at: <%= descendent[:created_at] %></li>
   <% end %>
 </ul>
+
+<p><a href="/descendents/new">New Descendent</a></p>
