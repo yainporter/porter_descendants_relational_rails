@@ -1,7 +1,10 @@
-# # frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe Descendent, type: :model do
+  describe "associations" do
+    it {should has_many (:missions)}
+  end
+
   it "can combine first and last name for a full name" do
     descendent = Descendent.create(first_name: "Rusty", last_name: "Porter")
 

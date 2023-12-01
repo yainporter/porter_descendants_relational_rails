@@ -1,7 +1,7 @@
 require 'spec_helper'
 class DescendentsController < ApplicationController
   def index
-    @descendents = Descendent.all
+    @descendents = Descendent.all.sort_by{|key, value| :created_at}
   end
 
   def new

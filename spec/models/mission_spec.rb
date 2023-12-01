@@ -1,5 +1,11 @@
 require "rails_helper"
 RSpec.describe Mission, type: :model do
+  describe "associations" do
+    it {should belong_to (:descendent)}
+  end
+
+
+
   it "can return 'Yes' or 'No' for service_mission?" do
     spain = Mission.create(mission_name:"Madrid Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
 

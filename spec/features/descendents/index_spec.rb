@@ -32,7 +32,7 @@ RSpec.describe "Descendents Index Page", type: :feature do
         italy = rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
 
         visit "/descendents/#{rusty.id}/missions"
-        save_and_open_page
+
         expect(page).to have_content(rusty.full_name)
         expect(page).to have_content(italy.mission_name)
         expect(page).to have_content(italy.mission_language)
@@ -49,7 +49,9 @@ RSpec.describe "Descendents Index Page", type: :feature do
         descendent = Descendent.create(first_name: "Aaron", last_name: "Porter", married: true)
         descendent_2 = Descendent.create(first_name: "Rusty", last_name: "Porter", allergies: true)
 
-        expect(page)
+        visit "/descendents"
+        
+        expect("Aaron Porter").to appear_before("Rusty Porter", only_text: false)
       end
   end
 end
