@@ -4,8 +4,9 @@ RSpec.describe "Missions Index Page", type: :feature do
   describe "As a user" do
     describe "When I visit /missions" do
       it "will show me each mission in the system, including it's attributes" do
-        italy = Mission.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
-        spain = Mission.create(mission_name:"Madrid Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
+        rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
+        italy = rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
+        spain = rusty.missions.create(mission_name:"Madrid Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
 
         visit "/missions"
 
@@ -18,7 +19,8 @@ RSpec.describe "Missions Index Page", type: :feature do
   describe "As a user" do
     describe "When I visit '/missions/:id'" do
       it "Will show the mission with that ID, including it's attributes" do
-        spain = Mission.create(mission_name:"Madrid Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
+        rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
+        spain = rusty.missions.create(mission_name:"Madrid Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
 
         visit "/missions/#{spain.id}"
 

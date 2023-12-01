@@ -37,7 +37,7 @@ class DescendentsController < ApplicationController
 
   def show_missions
     @descendent = Descendent.find(params[:id])
-    @mission = Mission.find_foreign_key(@descendent)
+    @mission = @descendent.missions
   end
   def destroy
 

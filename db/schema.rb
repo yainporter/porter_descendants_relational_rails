@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_204201) do
   end
 
   create_table "missions", force: :cascade do |t|
-    t.integer "foreign_id"
+    t.bigint "descendent_id", null: false
     t.string "mission_name"
     t.string "mission_language"
     t.string "country"
@@ -36,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_204201) do
     t.boolean "service_mission"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["descendent_id"], name: "index_missions_on_descendent_id"
   end
 
+  add_foreign_key "missions", "descendents"
 end

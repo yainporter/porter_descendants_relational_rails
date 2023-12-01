@@ -1,10 +1,10 @@
 <h1>These are the list of missions Porters have served in:</h1>
 <ul>
   <% @missions.each do |mission| %>
-  <li><%= mission.mission_name %></li>
-  <li><%= mission.mission_language %></li>
-  <li><%= mission.country %></li>
-  <li><%= mission.members_baptized %></li>
-  <li><%= mission.service_mission %></li>
+  <li>Mission:<%= mission.mission_name %></li>
+  <li>Language spoken: <%= mission.mission_language %></li>
+  <li>Country: <%= mission.country %></li>
+  <li>Number of members baptized: <%= mission.members_baptized %></li>
+  <li>Was this a service mission? <%= mission.service_mission %></li>
   <% end %>
 </ul>

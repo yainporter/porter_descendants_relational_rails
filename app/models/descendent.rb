@@ -1,4 +1,6 @@
 class Descendent < ApplicationRecord
+  has_many :missions
+
   def full_name
     first_name + " " + last_name
   end
