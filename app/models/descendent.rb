@@ -16,4 +16,8 @@ class Descendent < ApplicationRecord
   def married?
     married == true ? "Yes" : "No"
   end
+
+  def missions_served
+    missions.count
+  end
 end
