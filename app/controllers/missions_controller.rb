@@ -1,6 +1,6 @@
 class MissionsController < ApplicationController
   def index
-    @missions = Mission.all
+    @missions = Mission.where(service_mission: true)
   end
 
   def new
