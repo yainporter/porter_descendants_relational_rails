@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   get "/descendents/new", to: "descendents#new"
   post "/descendents", to: "descendents#create"
   get '/descendents/:id', to: 'descendents#show'
-  get '/descendents/:id/missions', to: 'descendents#show_missions'
+  get '/descendents/:id/missions', to: 'descendent_missions#index'
   get '/descendents/:id/edit', to: 'descendents#edit'
   patch 'descendents/:id', to: 'descendents#update'
+  get "/descendents/:id/missions/new", to: 'missions#new'
   get "/missions", to: "missions#index"
   get "/missions/new", to: "missions#new"
   post '/missions', to: 'missions#create'

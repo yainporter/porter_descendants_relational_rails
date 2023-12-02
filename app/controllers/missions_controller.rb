@@ -9,7 +9,6 @@ class MissionsController < ApplicationController
 
   def create
     mission = Mission.new({
-      foreign_id: params[:foreign_id],
       mission_name: params[:mission_name],
       mission_language: params[:mission_language],
       country: params[:country],
@@ -18,7 +17,7 @@ class MissionsController < ApplicationController
     })
     mission.save
 
-    redirect_to "/missions"
+    redirect_to "/tasks"
   end
 
   def edit
