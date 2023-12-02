@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get "/missions", to: "missions#index"
   post '/missions', to: 'missions#create'
   get "/missions/:id", to: "missions#show"
+  get "/missions/:id/edit", to: "missions#edit"
 end

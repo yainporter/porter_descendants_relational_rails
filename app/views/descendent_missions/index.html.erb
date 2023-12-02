@@ -5,7 +5,7 @@
 
 <h1><%= @descendent.full_name %>'s Mission</h1>
 <% @missions.each do |mission|  %>
-<h2>Mission: <%= mission.mission_name %></h2>
+<h3><%= mission.mission_name %></h3>
 <p>Language: <%= mission.mission_language %></p>
 <p>Country: <%= mission.country %></p>
 <p>Number of members baptized: <%= mission.members_baptized %></p>

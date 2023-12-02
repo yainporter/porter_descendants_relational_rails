@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Missions Index Page", type: :feature do
+RSpec.describe "Descendent Missions New Page", type: :feature do
   describe "When I visit /missions/new" do
     it "creates a new mission record sent to /missions when I fill out the form and click the button" do
         @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)

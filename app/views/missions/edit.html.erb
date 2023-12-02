@@ -1,0 +1,29 @@
+<nav>
+  <a href="/descendents">Descendants Index</a>
+  <a href="/missions">Missions Index</a>
+</nav>
+
+<form action="/missions/<%= @mission.id %>/" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <p>Edit mission:</p>
+  <label for="mission_name">Mission name:</label><br>
+  <input type="text" name="mission_name" id="mission_name"/><br/>
+
+  <label for="mission_language">Mission language:</label><br>
+  <input type="text" name="mission_language" id="mission_language"/><br/>
+
+  <label for="country">Country:</label><br>
+  <input type="text" name="country" id="country"/><br/>
+
+  <label for="members_baptized">Number of members baptized:</label><br>
+  <input type="integer" name="members_baptized" id="members_baptized"/><br/>
+
+  <p>Service mission?</p>
+  <input type="radio" name="service_mission" value="true" id="yservice_mission">
+  <label for="service_mission">Yes</label><br>
+  <input type="radio" name="service_mission" value="false" id="nservice_mission">
+  <label for="service_mission">No</label><br>
+
+  <input type="submit" value="Edit Mission">
+</form>

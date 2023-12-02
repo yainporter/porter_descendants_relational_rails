@@ -36,6 +36,12 @@ RSpec.describe "Missions Index Page", type: :feature do
 
         expect(page.current_path).to eq("/descendents")
       end
+
+      it "Will have a link to let me update the list of missions with each mission" do
+        visit "/missions/#{spain.id}"
+
+        expect(page).to have_content("Edit mission info")
+      end
     end
   end
 end

@@ -49,7 +49,7 @@ RSpec.describe "Descendents Index Page", type: :feature do
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
       end
 
-      it "Will show me a link top update the parent `Update Parent`" do
+      it "Will show me a link to update the descendent `Update Descendent`" do
         visit "/descendents/#{@rusty.id}"
 
         expect(page).to have_content("Update #{@rusty.full_name}'s Info")
