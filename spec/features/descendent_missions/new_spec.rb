@@ -11,7 +11,6 @@ RSpec.describe "Descendent Missions New Page", type: :feature do
         fill_in("members_baptized", with: "3")
         choose("nservice_mission")
         click_button
-        save_and_open_page
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
         expect(page).to have_content("Tokyo Japan")

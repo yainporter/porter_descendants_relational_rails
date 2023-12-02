@@ -16,4 +16,14 @@ RSpec.describe "Missions Edit Page", type: :feature do
       expect(page).to have_content("Number of members baptized:")
       expect(page).to have_content("Service mission?")
     end
+
+    it "will send a `PATCH` request to '/missions/:id' and update the info, redirecting to /missions/:id " do
+      visit "/missions/#{@italy.id}/edit"
+      fill_in("mission_name", with: "Tokyo, Japan")
+      click_button
+      save_and_open_page
+
+      expect(page.current_path).to eq("/missions/#{@italy.id}")
+      expect(page).to have_content("Tokyo, Japan")
+    end
 end

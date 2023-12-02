@@ -34,7 +34,8 @@ RSpec.describe "Descendents Edit Page", type: :feature do
         visit "/descendents/#{@rusty.id}/edit"
         fill_in("fname", with: "Alissa")
         click_button
-
+        save_and_open_page
+        
         expect(page.current_path).to eq("/descendents/#{@rusty.id}")
         expect(page).to have_content("Alissa")
       end
