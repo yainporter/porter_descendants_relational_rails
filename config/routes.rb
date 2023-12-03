@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get "/descendents/:id/missions/new", to: 'descendent_missions#new'
   get "/descendents/:id/missions/sort", to: "descendent_missions#sort"
 
+  delete "/descendents/:id", to: "descendent_missions#destroy", as: :destroy_descendent_and_missions
+
   get "/missions", to: "missions#index"
   get "/missions/new", to: "missions#new"
   get "/missions/:id", to: "missions#show"
@@ -25,6 +27,5 @@ Rails.application.routes.draw do
   post '/missions', to: 'missions#create'
   post "/missions/:id", to: "missions#show"
   patch "/missions/:id", to: "missions#update"
-
-  resources :missions
+  delete "/missions/:id", to: "missions#destroy", as: :destroy_missions
 end

@@ -61,6 +61,29 @@ RSpec.describe "Descendents Index Page", type: :feature do
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/edit")
       end
+
+      it "Will show a link to delete the descendent" do
+        visit "/descendents/#{@rusty.id}"
+        expect(page).to have_content("Delete")
+      end
+
+      it "Will send a DELETE request to '/descendents/:id' and the descendent+missions are deleted and page is redirected to the index" do
+        amy = Descendent.create(first_name: "Amy", last_name: "Porter", married: true, grandchildren: true)
+        kentucky = amy.missions.create(mission_name:"Kentucky", mission_language: "English", country: "USA", members_baptized: 1, service_mission: true)
+        visit "/missions"
+
+        expect(page).to have_content("Kentucky")
+
+        visit "/descendents/#{amy.id}"
+        click_link("Delete")
+
+        expect(page.current_path).to eq("/descendents")
+        expect(page).to have_no_content("Amy Porter")
+
+        visit "/missions"
+
+        expect(page).to have_no_content("Kentucky")
+      end
     end
   end
 end

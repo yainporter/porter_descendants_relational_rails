@@ -49,7 +49,7 @@ RSpec.describe "Missions Index Page", type: :feature do
 
       it "shows a link to edit that mission's info" do
         visit "/missions"
-        save_and_open_page
+        
         expect(page).to have_content("Edit Gilbert's Mission Info")
       end
 

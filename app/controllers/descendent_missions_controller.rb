@@ -43,6 +43,10 @@ class DescendentMissionsController < ApplicationController
   end
 
   def destroy
+    descendent = Descendent.find(params[:id])
+    descendent.missions.each{|mission| mission.destroy}
+    descendent.destroy
 
+    redirect_to "/descendents"
   end
 end

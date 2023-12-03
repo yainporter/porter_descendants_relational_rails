@@ -45,10 +45,6 @@ class DescendentsController < ApplicationController
     @missions_served = @descendent.missions.count
   end
 
-  # def show_missions
-  #   @descendent = Descendent.find(params[:id])
-  #   @mission = @descendent.missions
-  # end
   def destroy
 
   end

@@ -12,6 +12,7 @@
   <li>Grandchildren? <%= @descendent.grandchildren? %></li>
   <li>Number of languages spoken: <%= @descendent.languages %></li>
   <li>Number of missions served: <%= @missions_served %></li>
+  <li><%= link_to "Delete", destroy_descendent_and_missions_path(@descendent), method: :delete, data: { confirm: 'Are you sure?'}%></li>
 </ul>
 
 <p><%= @descendent.full_name %>'s <a href="/descendents/<%= @descendent.id %>/missions">Mission</a></p>

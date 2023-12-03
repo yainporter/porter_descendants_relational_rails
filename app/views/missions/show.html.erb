@@ -9,5 +9,6 @@
   <li>Mission Country: <%= @mission.country %></li>
   <li>Members baptized: <%= @mission.members_baptized %></li>
   <li>Service mission? <%= @mission.service_mission? %></li>
+  <li><%= link_to "Delete", destroy_missions_path(@mission), method: :delete, data: { confirm: 'Are you sure?'}%></li>
 </ul>
 <p><a href="/missions/<%= @mission.id %>/edit">Edit mission info</a></p>
