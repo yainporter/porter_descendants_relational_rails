@@ -7,19 +7,6 @@ class MissionsController < ApplicationController
 
   end
 
-  def create
-    mission = Mission.new({
-      mission_name: params[:mission_name],
-      mission_language: params[:mission_language],
-      country: params[:country],
-      members_baptized: params[:members_baptized],
-      service_mission: params[:service_mission]
-    })
-    mission.save
-
-    redirect_to "/tasks"
-  end
-
   def edit
     @mission = Mission.find(params[:id])
   end

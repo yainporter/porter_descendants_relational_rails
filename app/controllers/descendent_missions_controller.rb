@@ -25,11 +25,6 @@ class DescendentMissionsController < ApplicationController
     redirect_to "/descendents/#{descendent.id}/missions"
   end
 
-  def sort
-    @descendent = Descendent.find(params[:id])
-    @missions = @descendent.missions.order(:mission_name)
-  end
-
   def edit
 
   end
