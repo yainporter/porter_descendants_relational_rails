@@ -1,0 +1,3 @@
+class DescendentMission < ApplicationRecord
+
+end

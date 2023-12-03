@@ -16,12 +16,17 @@ Rails.application.routes.draw do
   get '/descendents/:id/missions', to: 'descendent_missions#index'
   post '/descendents/:id/missions', to: 'descendent_missions#create'
   get "/descendents/:id/missions/new", to: 'descendent_missions#new'
+  get "/descendents/:id/missions/sort", to: "descendent_missions#sort"
 
   get "/missions", to: "missions#index"
+  get "/missions/new", to: "missions#new"
   get "/missions/:id", to: "missions#show"
   get "/missions/:id/edit", to: "missions#edit"
   post '/missions', to: 'missions#create'
   post "/missions/:id", to: "missions#show"
   patch "/missions/:id", to: "missions#update"
 
+  resources :descendents do
+    resources :missions
+  end
 end

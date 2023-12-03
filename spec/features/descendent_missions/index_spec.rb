@@ -5,6 +5,7 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
     @aaron = Descendent.create(first_name: "Aaron", last_name: "Porter", married: true, grandchildren: true)
     @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
     @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
+    @spain = @rusty.missions.create(mission_name:"Madrid, Spain", mission_language: "Italian", country: "Spain", members_baptized: 1, service_mission: false)
   end
 
   describe "As a user" do
@@ -64,6 +65,13 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions/new")
       end
-    end
+
+      it "Will show a link to sort the missions in alphabetical order" do
+        visit "/descendents/#{@rusty.id}/missions"
+        click_link("Sort Alphabetically")
+
+        expect(@spain.mission_name).to appear_before(@italy.mission_name)
+      end
+    end 
   end
 end

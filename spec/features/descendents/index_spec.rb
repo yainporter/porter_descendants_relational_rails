@@ -11,7 +11,6 @@ RSpec.describe "Descendents Index Page", type: :feature do
     describe "when I visit '/descendents'" do
       it "I see the name of each parent in the record system" do
         visit "/descendents"
-        save_and_open_page
         expect(page).to have_content(@rusty.first_name)
       end
 

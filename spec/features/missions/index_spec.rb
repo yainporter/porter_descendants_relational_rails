@@ -12,7 +12,7 @@ RSpec.describe "Missions Index Page", type: :feature do
       it "will show me each mission in the system, including it's attributes" do
         visit "/missions"
 
-        ####### Do we really only want to display service missions?#######
+        ####### Do we really only want to display service missions only?#######
         expect(page).to have_no_content(@italy.mission_name)
         expect(page).to have_no_content(@spain.mission_name)
         expect(page).to have_content(@gilbert.mission_name)

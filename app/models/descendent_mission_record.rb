@@ -1,3 +1,0 @@
-class DescendentMission < Descendent
-
-end

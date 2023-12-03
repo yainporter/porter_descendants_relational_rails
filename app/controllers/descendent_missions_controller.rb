@@ -2,6 +2,9 @@ class DescendentMissionsController < ApplicationController
   def index
     @descendent = Descendent.find(params[:id])
     @missions = @descendent.missions
+    if params[:sort] == "mission_name"
+      @missions = @missions.order(:mission_name)
+    end
   end
 
   def new
@@ -20,6 +23,11 @@ class DescendentMissionsController < ApplicationController
     })
     mission.save
     redirect_to "/descendents/#{descendent.id}/missions"
+  end
+
+  def sort
+    @descendent = Descendent.find(params[:id])
+    @missions = @descendent.missions.order(:mission_name)
   end
 
   def edit

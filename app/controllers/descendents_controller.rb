@@ -42,12 +42,13 @@ class DescendentsController < ApplicationController
 
   def show
     @descendent = Descendent.find(params[:id])
+    @missions_served = @descendent.missions.count
   end
 
-  def show_missions
-    @descendent = Descendent.find(params[:id])
-    @mission = @descendent.missions
-  end
+  # def show_missions
+  #   @descendent = Descendent.find(params[:id])
+  #   @mission = @descendent.missions
+  # end
   def destroy
 
   end
