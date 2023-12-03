@@ -1,6 +1,6 @@
 <nav>
-  <a href="/descendents">Descendants Index</a>
-  <a href="/missions">Missions Index</a>
+  <%= link_to 'Descendants Index', descendents_path %>
+  <%= link_to 'Missions Index', missions_path %>
 </nav>
 
 <h1><%= @descendent.full_name %>'s Mission</h1>
@@ -14,6 +14,7 @@
 <% end %>
 
 <div>
-  <a href="/descendents/<%= @descendent.id %>/missions/new">Create Mission</a>
+  <%= link_to 'Create Mission', new_descendent_missions_path %>
   <%= link_to "Sort Alphabetically", descendent_missions_path(@descendent.id, sort: "mission_name") %>
+  <form action="/descendents/<%= @descendent.id %>/missions" method="get">
 </div>

@@ -1,6 +1,6 @@
 <nav>
-  <a href="/descendents">Descendants Index</a>
-  <a href="/missions">Missions Index</a>
+  <%= link_to 'Descendants Index', descendents_path %>
+  <%= link_to 'Missions Index', missions_path %>
 </nav>
 
 <h1><%= @descendent.full_name %></h1>
@@ -12,7 +12,7 @@
   <li>Grandchildren? <%= @descendent.grandchildren? %></li>
   <li>Number of languages spoken: <%= @descendent.languages %></li>
   <li>Number of missions served: <%= @missions_served %></li>
-  <li><%= link_to "Delete", destroy_descendent_and_missions_path(@descendent), method: :delete, data: { confirm: 'Are you sure?'}%></li>
+  <li><%= link_to "Delete", destroy_descendent_and_missions_path(@descendent), method: :delete %></li>
 </ul>
 
 <p><%= @descendent.full_name %>'s <a href="/descendents/<%= @descendent.id %>/missions">Mission</a></p>

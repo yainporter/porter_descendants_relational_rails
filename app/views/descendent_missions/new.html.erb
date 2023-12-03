@@ -1,6 +1,6 @@
 <nav>
-  <a href="/descendents">Descendants Index</a>
-  <a href="/missions">Missions Index</a>
+  <%= link_to 'Descendants Index', descendents_path %>
+  <%= link_to 'Missions Index', missions_path %>
 </nav>
 
 <form action="/descendents/<%= @descendent.id %>/missions" method="POST">

@@ -82,7 +82,7 @@ RSpec.describe "Descendents Index Page", type: :feature do
 
         visit "/missions"
 
-        expect(page).to have_no_content("Kentucky")
+        expect(page).to have_no_content(kentucky.mission_name)
       end
     end
   end

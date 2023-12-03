@@ -86,6 +86,23 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
 
         expect(page.current_path).to eq("/missions/#{@spain.id}/edit")
       end
+
+      it "Will have a form that allows me to input a value with a submit button" do
+        #### US 21 ####
+        visit "/descendents/#{@rusty.id}/missions"
+
+        expect(page).to have_button("Submit")
+        expect(page).to have_content("Only return records with more than")
+      end
+
+      it "Will take me back to the current index page with only the records that meet the threshold from the submit button" do
+        #### US 21 ####
+        visit "/descendents/#{@rusty.id}/missions"
+
+        click_button
+
+        expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
+      end
     end
   end
 end

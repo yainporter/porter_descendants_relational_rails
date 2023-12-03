@@ -15,13 +15,13 @@ Rails.application.routes.draw do
 
   get '/descendents/:id/missions', to: 'descendent_missions#index', as: :descendent_missions
   post '/descendents/:id/missions', to: 'descendent_missions#create'
-  get "/descendents/:id/missions/new", to: 'descendent_missions#new'
+  get "/descendents/:id/missions/new", to: 'descendent_missions#new', as: :new_descendent_missions
   get "/descendents/:id/missions/sort", to: "descendent_missions#sort"
 
   delete "/descendents/:id", to: "descendent_missions#destroy", as: :destroy_descendent_and_missions
 
   get "/missions", to: "missions#index"
-  get "/missions/new", to: "missions#new"
+  get "/missions/new", to: "missions#new", as: :new_missions
   get "/missions/:id", to: "missions#show"
   get '/missions/:id/edit', to: 'missions#edit', as: :edit_mission
   post '/missions', to: 'missions#create'
