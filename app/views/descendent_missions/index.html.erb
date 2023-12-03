@@ -10,6 +10,7 @@
 <p>Country: <%= mission.country %></p>
 <p>Number of members baptized: <%= mission.members_baptized %></p>
 <p>Was this a service mission? <%= mission.service_mission? %></p>
+<%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %>
 <% end %>
 
 <div>

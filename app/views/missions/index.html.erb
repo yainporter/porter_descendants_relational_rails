@@ -5,7 +5,7 @@
 
 <h1>These are the list of missions Porters have served in:</h1>
 <ul>
-  <% @missions.each do |mission| %>
+  <% @missions.each do |mission| %> 
   <h3><%= mission.mission_name %></h3>
   <li><a href="/missions/<%= mission.id %>">Mission ID: <%= mission.id %></a></li>
   <li>Language spoken: <%= mission.mission_language %></li>
@@ -13,6 +13,7 @@
   <li>Number of members baptized: <%= mission.members_baptized %></li>
   <li>Was this a service mission? <%= mission.service_mission? %></li>
   <li>Descendent ID: <%= mission.descendent_id %></li>
+  <li><%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %></li>
   <br>
   <% end %>
 </ul>

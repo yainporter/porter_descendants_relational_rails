@@ -72,6 +72,20 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
 
         expect(@spain.mission_name).to appear_before(@italy.mission_name)
       end
-    end 
+
+      it "shows a link to edit that mission's info" do
+        visit "/descendents/#{@rusty.id}/missions"
+        expect(page).to have_content("Edit #{@spain.mission_name}'s Mission Info")
+        expect(page).to have_content("Edit #{@italy.mission_name}'s Mission Info")
+      end
+
+      it "will take me to 'descendents/:id/edit' when I click on the edit link" do
+        visit "/descendents/#{@rusty.id}/missions"
+
+        click_link(id: "edit_#{@spain.id}_link")
+
+        expect(page.current_path).to eq("/missions/#{@spain.id}/edit")
+      end
+    end
   end
 end
