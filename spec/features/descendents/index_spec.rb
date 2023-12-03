@@ -62,6 +62,20 @@ RSpec.describe "Descendents Index Page", type: :feature do
 
         expect(page.current_path).to eq("/descendents/new")
       end
+
+      it "shows a link to edit that descendent's info" do
+        visit "/descendents"
+
+        expect(page).to have_content("Edit Rusty Porter's Info")
+        expect(page).to have_content("Edit Aaron Porter's Info")
+      end
+
+      it "will take me to 'descendents/:id/edit' when I click on the edit link" do
+        visit "/descendents"
+        click_link(id: "edit_#{@rusty.id}_link")
+
+        expect(page.current_path).to eq("/descendents/#{@rusty.id}/edit")
+      end
     end
   end
 end

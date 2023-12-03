@@ -21,7 +21,6 @@ RSpec.describe "Missions Edit Page", type: :feature do
       visit "/missions/#{@italy.id}/edit"
       fill_in("mission_name", with: "Tokyo, Japan")
       click_button
-      save_and_open_page
 
       expect(page.current_path).to eq("/missions/#{@italy.id}")
       expect(page).to have_content("Tokyo, Japan")
