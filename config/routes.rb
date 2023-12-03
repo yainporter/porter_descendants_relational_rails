@@ -6,26 +6,26 @@ Rails.application.routes.draw do
   get "/", to: "welcome#index"
 
   get "/descendents", to: "descendents#index"
-  get "/descendents/new", to: "descendents#new"
-  get '/descendents/:id', to: 'descendents#show'
+  get "/descendents/new", to: "descendents#new", as: :new_descendent
+  get '/descendents/:id', to: 'descendents#show', as: :show_descendent
   get '/descendents/:id/edit', to: 'descendents#edit', as: :edit_descendent
-  patch 'descendents/:id', to: 'descendents#update'
-  post "/descendents", to: "descendents#create"
+  patch 'descendents/:id', to: 'descendents#update', as: :update_descendent
+  post "/descendents", to: "descendents#create", as: :create_descendent
 
 
   get '/descendents/:id/missions', to: 'descendent_missions#index', as: :descendent_missions
-  post '/descendents/:id/missions', to: 'descendent_missions#create'
+  post '/descendents/:id/missions', to: 'descendent_missions#create', as: :create_descendent_mission
   get "/descendents/:id/missions/new", to: 'descendent_missions#new', as: :new_descendent_missions
-  get "/descendents/:id/missions/sort", to: "descendent_missions#sort"
+  get "/descendents/:id/missions/sort", to: "descendent_missions#sort", as: :sort_descendent_missions
 
   delete "/descendents/:id", to: "descendent_missions#destroy", as: :destroy_descendent_and_missions
 
   get "/missions", to: "missions#index"
   get "/missions/new", to: "missions#new", as: :new_missions
-  get "/missions/:id", to: "missions#show"
+  get "/missions/:id", to: "missions#show", as: :show_mission
   get '/missions/:id/edit', to: 'missions#edit', as: :edit_mission
-  post '/missions', to: 'missions#create'
-  post "/missions/:id", to: "missions#show"
-  patch "/missions/:id", to: "missions#update"
+  post '/missions', to: 'missions#create', as: :create_mission
+  post "/missions/:id", to: "missions#show", as: :post_mission
+  patch "/missions/:id", to: "missions#update", as: :update_mission
   delete "/missions/:id", to: "missions#destroy", as: :destroy_missions
 end
