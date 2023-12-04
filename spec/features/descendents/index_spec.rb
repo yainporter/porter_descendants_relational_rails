@@ -76,6 +76,23 @@ RSpec.describe "Descendents Index Page", type: :feature do
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/edit")
       end
+
+      it "will have a delete link next to every parent" do
+        ####### How do I test for every parent? #######
+        visit "/descendents"
+
+        expect(page).to have_content("Delete")
+      end
+
+      it "will redirect to /descendents after deleting and no longer have the Descendent" do
+        anna = Descendent.create(first_name: "Anna", last_name: "Porter", married: true, grandchildren: true)
+        visit "/descendents"
+        expect(page).to have_content("Anna Porter")
+        click_link(id: "delete_#{anna.id}")
+        expect(page.current_path).to eq("/descendents")
+        expect(page).to have_no_content("Anna Porter")
+
+      end
     end
   end
 end

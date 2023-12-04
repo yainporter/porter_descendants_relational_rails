@@ -6,7 +6,10 @@
 <h1>These are the list of descendants from Marlane & Don Porter:</h1>
 <ul>
   <% @descendents.each do |descendent| %>
-  <li><%= link_to "#{descendent.full_name}", show_descendent_path(descendent) %> - Created at: <%= descendent[:created_at] %> [<%= link_to "Edit #{descendent.full_name}'s Info", edit_descendent_path(descendent), id: "edit_#{descendent.id}_link" %>]</li>
+  <li><%= link_to "#{descendent.full_name}", show_descendent_path(descendent) %> - Created at: <%= descendent[:created_at] %> 
+  <ul>
+    <li>[<%= link_to "Edit #{descendent.full_name}'s Info", edit_descendent_path(descendent), id: "edit_#{descendent.id}_link" %>] - [<%= link_to "Delete", destroy_descendent_and_missions_path(descendent), data: {turbo_method: :delete}, id: "delete_#{descendent.id}" %>]</li>
+  </ul>
   <% end %>
 </ul>
 <p><%= link_to 'New Descendent', "/descendents/new" %></p>
