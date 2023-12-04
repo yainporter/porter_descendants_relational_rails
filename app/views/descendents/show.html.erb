@@ -12,7 +12,7 @@
   <li>Grandchildren? <%= @descendent.grandchildren? %></li>
   <li>Number of languages spoken: <%= @descendent.languages %></li>
   <li>Number of missions served: <%= @missions_served %></li>
-  <li><%= link_to "Delete", destroy_descendent_and_missions_path(@descendent), method: :delete %></li>
+  <li><%= link_to "Delete", destroy_descendent_and_missions_path(@descendent), data: {turbo_method: :delete} %></li>
 </ul>
 <p><%= link_to "#{@descendent.full_name}'s Mission", descendent_missions_path(@descendent) %></p>
 <div><%= link_to "Update #{@descendent.full_name}'s Info", edit_descendent_path(@descendent) %></div>
