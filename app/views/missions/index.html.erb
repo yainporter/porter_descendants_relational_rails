@@ -7,13 +7,13 @@
 <ul>
   <% @missions.each do |mission| %> 
   <h3><%= mission.mission_name %></h3>
-  <li><a href="/missions/<%= mission.id %>">Mission ID: <%= mission.id %></a></li>
   <li>Language spoken: <%= mission.mission_language %></li>
   <li>Country: <%= mission.country %></li>
   <li>Number of members baptized: <%= mission.members_baptized %></li>
   <li>Was this a service mission? <%= mission.service_mission? %></li>
   <li>Descendent ID: <%= mission.descendent_id %></li>
   <li><%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %></li>
+  <%= link_to "Delete #{mission.mission_name}", destroy_missions_path(mission), id: "delete_#{mission.mission_name}", data: {turbo_method: :delete} %>
   <br>
   <% end %>
 </ul>

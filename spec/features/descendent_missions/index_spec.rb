@@ -106,11 +106,23 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
 
         fill_in :number, with: "2"
         click_button
-        
+
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
         expect(page).to have_no_content("Rome Italy")
         expect(page).to have_no_content("Madrid, Spain")
         expect(page).to have_content("Tokyo")
+      end
+
+      it "will show a link to delete each mission and redirect to '/missions" do
+        mission = @rusty.missions.create(mission_name:"Random Mission", mission_language: "English", country: "USA", members_baptized: 11, service_mission: true)
+        visit "/descendents/#{@rusty.id}/missions"
+
+
+        expect(page).to have_content("Random Mission")
+
+        click_link(id: "delete_#{mission.mission_name}")
+
+        expect(page).to have_no_content("Random Mission")
       end
     end
   end

@@ -29,7 +29,8 @@ class MissionsController < ApplicationController
   end
 
   def destroy
-    Mission.destroy(params[:id])
+    mission = Mission.find(params[:id])
+    mission.destroy
 
     redirect_to "/missions"
   end

@@ -10,7 +10,8 @@
 <p>Country: <%= mission.country %></p>
 <p>Number of members baptized: <%= mission.members_baptized %></p>
 <p>Was this a service mission? <%= mission.service_mission? %></p>
-<%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %>
+[<%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %>]
+[<%= link_to "Delete #{mission.mission_name} Mission", destroy_descendent_and_missions_path(@descendent), data: {turbo_method: :delete}, id: "delete_#{mission.mission_name}" %>]
 <% end %>
 
   <%= form_with url: patch_descendent_missions_path(@descendent, sort: "filter"), method: :patch do |f| %>

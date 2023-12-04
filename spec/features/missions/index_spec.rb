@@ -49,7 +49,7 @@ RSpec.describe "Missions Index Page", type: :feature do
 
       it "shows a link to edit that mission's info" do
         visit "/missions"
-        
+
         expect(page).to have_content("Edit Gilbert's Mission Info")
       end
 
@@ -58,6 +58,19 @@ RSpec.describe "Missions Index Page", type: :feature do
         click_link(id: "edit_#{@gilbert.id}_link")
 
         expect(page.current_path).to eq("/missions/#{@gilbert.id}/edit")
+      end
+
+      it "will have a link next to every mission that will delete the mission" do
+
+        #### Untested every mission with delete #####
+        mission = @rusty.missions.create(mission_name:"Random Mission", mission_language: "English", country: "USA", members_baptized: 11, service_mission: true)
+        visit "/missions"
+
+        expect(page).to have_content("Random Mission")
+
+        click_link(id: "delete_#{mission.mission_name}")
+
+        expect(page).to have_no_content("Random Mission")
       end
     end
   end
