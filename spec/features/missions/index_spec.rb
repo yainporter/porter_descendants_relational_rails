@@ -70,6 +70,7 @@ RSpec.describe "Missions Index Page", type: :feature do
 
         click_link(id: "delete_#{mission.mission_name}")
 
+        expect(page.current_path).to eq("/missions")
         expect(page).to have_no_content("Random Mission")
       end
     end
