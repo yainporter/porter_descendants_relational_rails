@@ -93,6 +93,26 @@ RSpec.describe "Descendents Index Page", type: :feature do
         expect(page).to have_no_content("Anna Porter")
 
       end
+
+      describe "Extension 1" do
+        it "has a link to sort descendents by number of missions" do
+          visit "/descendents"
+
+          expect(page).to have_content("Sort by number of missions")
+        end
+
+        it "will refresh the page and sort descendents by number of missions ascending when the link is clicked" do
+          visit "/descendents"
+          save_and_open_page
+          expect(page.current_path).to eq("/descendents")
+          expect().to appear_before()
+        end
+
+        it "will have the number of missions next to the descendent once sorted" do
+          visit "/descendents"
+
+        end
+      end
     end
   end
 end
