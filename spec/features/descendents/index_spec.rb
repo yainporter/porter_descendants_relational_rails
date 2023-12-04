@@ -7,111 +7,132 @@ RSpec.describe "Descendents Index Page", type: :feature do
     @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
   end
 
-  describe "As a user" do
-    describe "when I visit '/descendents'" do
-      it "I see the name of each parent in the record system" do
-        visit "/descendents"
-        expect(page).to have_content(@rusty.first_name)
-      end
+  describe "when I visit '/descendents'" do ### MAKE THIS A FEATURE DESCERIPTION ####
+    it "shows the name of each parent in the record system" do
+      visit "/descendents"
 
-      it "Will show records ordered by recently created" do
-        Descendent.create(first_name: "Yain", last_name: "Porter")
-        Descendent.create(first_name: "Adeline", last_name: "Porter")
-        visit "/descendents"
+      expect(page).to have_content(@rusty.first_name)
+    end
 
-        expect("Yain Porter").to appear_before("Rusty Porter", only_text: false)
-        expect("Adeline Porter").to appear_before("Yain Porter", only_text: false)
-      end
+    it "will show records ordered by recently created" do
+      Descendent.create(first_name: "Yain", last_name: "Porter")
+      Descendent.create(first_name: "Adeline", last_name: "Porter")
+      visit "/descendents"
 
-      it "Will show when Descendent was created" do
-        visit "/descendents"
+      expect("Yain Porter").to appear_before("Rusty Porter", only_text: false)
+      expect("Adeline Porter").to appear_before("Yain Porter", only_text: false)
+    end
 
-        expect(page).to have_content(@aaron[:created_at])
-        expect(page).to have_content(@rusty[:created_at])
-      end
+    it "shows when Descendent was created" do
+      visit "/descendents"
 
-      it "Will have a link at the top of the page that takes me to the Missions Index" do
-        visit "/descendents"
+      expect(page).to have_content(@aaron[:created_at])
+      expect(page).to have_content(@rusty[:created_at])
+    end
 
-        expect(page).to have_content("Missions Index")
+    it "Will have a link at the top of the page that takes me to the Missions Index" do
+      visit "/descendents"
 
-        find('nav').click_link("Missions Index")
+      expect(page).to have_content("Missions Index")
 
-        expect(page.current_path).to eq("/missions")
-      end
+      find('nav').click_link("Missions Index")
 
-      it "Will have a link at the top of the page that takes me to the Descendents Index" do
-        visit "/descendents"
+      expect(page.current_path).to eq("/missions")
+    end
 
-        expect(page).to have_content("Descendants Index")
+    it "Will have a link at the top of the page that takes me to the Descendents Index" do
+      visit "/descendents"
 
-        find('nav').click_link("Descendants Index")
+      expect(page).to have_content("Descendants Index")
 
-        expect(page.current_path).to eq("/descendents")
-      end
+      find('nav').click_link("Descendants Index")
 
-      it "will show me a link to create a 'New Descendent'" do
-        visit "/descendents"
+      expect(page.current_path).to eq("/descendents")
+    end
 
-        expect(page).to have_content("New Descendent")
-      end
+    it "will show me a link to create a 'New Descendent'" do
+      visit "/descendents"
 
-      it "clicking 'New Descendent' will take me to '/descdendents/new'" do
-        visit "/descendents"
-        find('p').click_link("New Descendent")
+      expect(page).to have_content("New Descendent")
+    end
 
-        expect(page.current_path).to eq("/descendents/new")
-      end
+    it "clicking 'New Descendent' will take me to '/descdendents/new'" do
+      visit "/descendents"
+      find('p').click_link("New Descendent")
 
-      it "shows a link to edit that descendent's info" do
-        visit "/descendents"
+      expect(page.current_path).to eq("/descendents/new")
+    end
 
-        expect(page).to have_content("Edit Rusty Porter's Info")
-        expect(page).to have_content("Edit Aaron Porter's Info")
-      end
+    it "shows a link to edit that descendent's info" do
+      visit "/descendents"
 
-      it "will take me to 'descendents/:id/edit' when I click on the edit link" do
-        visit "/descendents"
-        click_link(id: "edit_#{@rusty.id}_link")
+      expect(page).to have_content("Edit Rusty Porter's Info")
+      expect(page).to have_content("Edit Aaron Porter's Info")
+    end
 
-        expect(page.current_path).to eq("/descendents/#{@rusty.id}/edit")
-      end
+    it "will take me to 'descendents/:id/edit' when I click on the edit link" do
+      visit "/descendents"
+      click_link(id: "edit_#{@rusty.id}_link")
 
-      it "will have a delete link next to every parent" do
-        ####### How do I test for every parent? #######
-        visit "/descendents"
+      expect(page.current_path).to eq("/descendents/#{@rusty.id}/edit")
+    end
 
-        expect(page).to have_content("Delete")
-      end
+    it "will have a delete link next to every parent" do
+      ####### How do I test for every parent? #######
+      visit "/descendents"
+      save_and_open_page
+      expect(page).to have_content("Delete")
+    end
 
-      it "will redirect to /descendents after deleting and no longer have the Descendent" do
+    it "will redirect to /descendents after deleting and no longer have the Descendent" do
+      adeline = Descendent.create(first_name: "Adeline", last_name: "Porter", married: true, grandchildren: true)
+      visit "/descendents"
+
+      expect(page).to have_content("Adeline Porter")
+
+      click_link(id: "delete_#{adeline.id}")
+
+      expect(page.current_path).to eq("/descendents")
+      expect(page).to have_no_content("Adeline Porter")
+
+    end
+
+    describe "Extension 1" do
+      it "has a link to sort descendents by number of missions" do
         anna = Descendent.create(first_name: "Anna", last_name: "Porter", married: true, grandchildren: true)
+        anna.missions.create(mission_name: "Spain")
+        anna.missions.create(mission_name: "Louisiana")
+        anna.missions.create(mission_name: "Florida")
         visit "/descendents"
-        expect(page).to have_content("Anna Porter")
-        click_link(id: "delete_#{anna.id}")
-        expect(page.current_path).to eq("/descendents")
-        expect(page).to have_no_content("Anna Porter")
 
+        expect(page).to have_content("Sort by number of missions")
       end
 
-      describe "Extension 1" do
-        it "has a link to sort descendents by number of missions" do
-          visit "/descendents"
+      it "will refresh the page and sort descendents by number of missions ascending when the link is clicked" do
+        anna = Descendent.create(first_name: "Anna", last_name: "Porter", married: true, grandchildren: true)
+        anna.missions.create(mission_name: "Spain")
+        anna.missions.create(mission_name: "Louisiana")
+        anna.missions.create(mission_name: "Florida")
+        visit "/descendents"
+        click_link ("Sort by number of missions")
 
-          expect(page).to have_content("Sort by number of missions")
-        end
+        expect(page.current_path).to eq("/descendents")
+        expect(anna.full_name).to appear_before(@rusty.full_name)
+        expect(anna.full_name).to appear_before(@aaron.full_name)
+      end
 
-        it "will refresh the page and sort descendents by number of missions ascending when the link is clicked" do
-          visit "/descendents"
-          save_and_open_page
-          expect(page.current_path).to eq("/descendents")
-          expect().to appear_before()
-        end
+      it "will have the number of missions next to the descendent once sorted" do
+        anna = Descendent.create(first_name: "Anna", last_name: "Porter", married: true, grandchildren: true)
+        anna.missions.create(mission_name: "Spain")
+        anna.missions.create(mission_name: "Louisiana")
+        anna.missions.create(mission_name: "Florida")
+        visit "/descendents"
 
-        it "will have the number of missions next to the descendent once sorted" do
-          visit "/descendents"
+        expect(page).to have_no_content("Number of missions: 3")
 
-        end
+        click_link ("Sort by number of missions")
+
+        expect(page).to have_content("Number of missions: 3")
       end
     end
   end

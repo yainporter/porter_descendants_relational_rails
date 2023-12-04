@@ -37,4 +37,19 @@ RSpec.describe Descendent, type: :model do
     expect(@descendent.missions_served).to eq 0
     expect(@descendent_2.missions_served).to eq 1
   end
+
+  it "can sort Descendents by the number of their missions" do
+    @descendent.missions.create(mission_name: "Tokyo")
+    @descendent.missions.create(mission_name: "Hawaii")
+    @descendent.missions.create(mission_name: "Gilbert")
+    @amy = Descendent.create(first_name: "Amy", last_name: "Porter", married: true, grandchildren: true)
+    @amy.missions.create(mission_name: "Kentucky")
+    @amy.missions.create(mission_name: "Arizona")
+
+    descendents_sorted_by_mission_count = Descendent.sort_by_number_of_missions
+    first = descendents_sorted_by_mission_count.shift
+    second = descendents_sorted_by_mission_count.shift
+    third = descendents_sorted_by_mission_count.shift
+    expect([first, second, third]).to eq([@descendent, @amy, @descendent_2])
+  end
 end

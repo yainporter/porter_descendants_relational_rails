@@ -1,11 +1,12 @@
 class DescendentsController < ApplicationController
   def index
-    @descendents = Descendent.all.order(created_at: :desc)
-
     if params[:sort]
-      @descendents.order(:missions)
+      @descendents = Descendent.sort_by_number_of_missions
+    else
+      @descendents = Descendent.all.order(created_at: :desc)
     end
   end
+
   def new
 
   end
@@ -19,6 +20,7 @@ class DescendentsController < ApplicationController
   def descendent_params
     params.permit(:first_name, :last_name, :birthday, :allergies, :languages, :married, :grandchildren)
   end
+
   def edit
     @descendent = Descendent.find(params[:id])
   end

@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   get "/descendents", to: "descendents#index"
   get "/descendents/new", to: "descendents#new", as: :new_descendent
-  get '/descendents/:id', to: 'descendents#show', as: :show_descendent
-  get '/descendents/:id/edit', to: 'descendents#edit', as: :edit_descendent
-  patch 'descendents/:id', to: 'descendents#update', as: :update_descendent
   post "/descendents", to: "descendents#create", as: :create_descendent
+  get '/descendents/:id', to: 'descendents#show', as: :show_descendent
+  patch 'descendents/:id', to: 'descendents#update', as: :update_descendent
+  get '/descendents/:id/edit', to: 'descendents#edit', as: :edit_descendent
 
 
   get '/descendents/:id/missions', to: 'descendent_missions#index', as: :descendent_missions
@@ -27,4 +27,9 @@ Rails.application.routes.draw do
   post "/missions/:id", to: "missions#show", as: :post_mission
   patch "/missions/:id", to: "missions#update", as: :update_mission
   delete "/missions/:id", to: "missions#destroy", as: :destroy_missions
+
+  get "/granchildren", to: "grandchildren#index"
+  get "/missions/new", to: "grandchildren#new", as: :new_grandchildren
+  post "/missions", to: "grandchildren#create", as: :create_grandchildren
+
 end

@@ -7,7 +7,6 @@ class DescendentMissionsController < ApplicationController
     elsif params[:sort] == "filter"
       @missions = @missions.where("members_baptized > #{params[:number]}")
     end
-
   end
 
   def new
@@ -26,7 +25,7 @@ class DescendentMissionsController < ApplicationController
   end
 
   def edit
-
+    require 'pry'; binding.pry
   end
 
   def update

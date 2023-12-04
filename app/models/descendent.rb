@@ -20,4 +20,10 @@ class Descendent < ApplicationRecord
   def missions_served
     missions.count
   end
+
+  def self.sort_by_number_of_missions
+    Descendent.all.sort_by do |descendent|
+      descendent.missions_served
+    end.reverse
+  end
 end
