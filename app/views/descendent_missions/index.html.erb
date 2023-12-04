@@ -13,6 +13,12 @@
 <%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %>
 <% end %>
 
+<%= form_with url: descendent_missions_path, method: :post do |f| %>
+  <%= f.label :number %>
+  <%= f.number_field :number %>
+  <%= f.submit "Only return records with more than" %>
+<% end %>
+
 <div>
   <%= link_to 'Create Mission', new_descendent_missions_path %>
   <%= link_to "Sort Alphabetically", descendent_missions_path(@descendent.id, sort: "mission_name") %>

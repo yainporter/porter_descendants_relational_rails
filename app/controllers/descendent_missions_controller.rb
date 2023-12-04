@@ -5,6 +5,8 @@ class DescendentMissionsController < ApplicationController
     if params[:sort] == "mission_name"
       @missions = @missions.order(:mission_name)
     end
+
+    
   end
 
   def new
