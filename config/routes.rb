@@ -16,8 +16,7 @@ Rails.application.routes.draw do
   get '/descendents/:id/missions', to: 'descendent_missions#index', as: :descendent_missions
   post '/descendents/:id/missions', to: 'descendent_missions#create', as: :create_descendent_mission
   get "/descendents/:id/missions/new", to: 'descendent_missions#new', as: :new_descendent_missions
-  get "/descendents/:id/missions/sort", to: "descendent_missions#sort", as: :sort_descendent_missions
-
+  patch "/descendents/:id/missions", to: "descendent_missions#index", as: :patch_descendent_missions
   delete "/descendents/:id", to: "descendent_missions#destroy", as: :destroy_descendent_and_missions
 
   get "/missions", to: "missions#index"

@@ -4,9 +4,10 @@ class DescendentMissionsController < ApplicationController
     @missions = @descendent.missions
     if params[:sort] == "mission_name"
       @missions = @missions.order(:mission_name)
+    elsif params[:sort] == "filter"
+      @missions = @missions.where("members_baptized > #{params[:number]}")
     end
 
-    
   end
 
   def new

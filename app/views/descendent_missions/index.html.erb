@@ -13,14 +13,16 @@
 <%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %>
 <% end %>
 
-<%= form_with url: descendent_missions_path, method: :post do |f| %>
-  <%= f.label :number %>
-  <%= f.number_field :number %>
-  <%= f.submit "Only return records with more than" %>
-<% end %>
+  <%= form_with url: patch_descendent_missions_path(@descendent, sort: "filter"), method: :patch do |f| %>
+  <%= f.label "Show missions with more than:" %> 
+  <%= f.number_field :number %> baptisms
+  <%= f.submit "Filter" %>
+  <% end %>
+
+
 
 <div>
   <%= link_to 'Create Mission', new_descendent_missions_path %>
-  <%= link_to "Sort Alphabetically", descendent_missions_path(@descendent.id, sort: "mission_name") %>
+  <%= link_to "Sort Alphabetically", descendent_missions_path(@descendent, sort: "mission_name") %>
   <form action="/descendents/<%= @descendent.id %>/missions" method="get">
 </div>

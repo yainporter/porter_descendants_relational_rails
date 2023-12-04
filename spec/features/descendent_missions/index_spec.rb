@@ -91,17 +91,26 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
         #### US 21 ####
         visit "/descendents/#{@rusty.id}/missions"
 
-        expect(page).to have_button("Submit")
-        expect(page).to have_content("Only return records with more than")
+        expect(page).to have_button("Filter")
+        expect(page).to have_field()
       end
 
       it "Will take me back to the current index page with only the records that meet the threshold from the submit button" do
         #### US 21 ####
+        @rusty.missions.create(mission_name:"Tokyo", mission_language: "Italian", country: "Spain", members_baptized: 5, service_mission: false)
         visit "/descendents/#{@rusty.id}/missions"
 
-        click_button
+        expect(page).to have_content("Rome Italy")
+        expect(page).to have_content("Madrid, Spain")
+        expect(page).to have_content("Tokyo")
 
+        fill_in :number, with: "2"
+        click_button
+        
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
+        expect(page).to have_no_content("Rome Italy")
+        expect(page).to have_no_content("Madrid, Spain")
+        expect(page).to have_content("Tokyo")
       end
     end
   end
