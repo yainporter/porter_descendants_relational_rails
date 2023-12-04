@@ -13,15 +13,13 @@ class MissionsController < ApplicationController
 
   def update
     mission = Mission.find(params[:id])
-    mission.update({
-      mission_name: params[:mission_name],
-      mission_language: params[:mission_language],
-      country: params[:country],
-      members_baptized: params[:members_baptized],
-      service_mission: params[:service_mission]
-    })
-    mission.save
+    mission.update(mission_params)
+    
     redirect_to "/missions/#{mission.id}"
+  end
+
+  def mission_params
+    params.permit(:mission_name, :mission_language, :country, :members_baptized, :service_mission)
   end
 
   def show

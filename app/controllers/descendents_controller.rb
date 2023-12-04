@@ -12,7 +12,7 @@ class DescendentsController < ApplicationController
 
   def create
     descendent = Descendent.create(descendent_params)
-    
+
     redirect_to "/descendents"
   end
 
@@ -25,15 +25,7 @@ class DescendentsController < ApplicationController
 
   def update
     descendent = Descendent.find(params[:id])
-    descendent.update({
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      birthday: params[:birthday],
-      allergies: params[:allergies],
-      languages: params[:languages],
-      married: params[:married],
-      grandchildren: params[:grandchildren]
-    })
+    descendent.update(descendent_params)
     descendent.save
     redirect_to "/descendents/#{descendent.id}"
   end

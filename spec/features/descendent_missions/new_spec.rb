@@ -13,6 +13,7 @@ RSpec.describe "Descendent Missions New Page", type: :feature do
         click_button
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
+        save_and_open_page
         expect(page).to have_content("Tokyo Japan")
         expect(page).to have_content("Japanese")
         expect(page).to have_content("Japanese")
