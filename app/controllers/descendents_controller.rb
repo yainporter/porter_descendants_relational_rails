@@ -2,9 +2,8 @@ class DescendentsController < ApplicationController
   def index
     if params[:sort]
       @descendents = Descendent.sort_by_number_of_missions
-    # elsif params[:keyword]
-    #   require 'pry'; binding.pry
-    #   @descendents = Descendent.where(mission_name: params[:keyword])
+    elsif params[:keyword]
+      @descendents = Descendent.filter_by(params[:keyword])
     else
       @descendents = Descendent.all.order(created_at: :desc)
     end
@@ -16,7 +15,7 @@ class DescendentsController < ApplicationController
 
   def create
     descendent = Descendent.create(descendent_params)
-
+    descendent.save
     redirect_to "/descendents"
   end
 

@@ -30,8 +30,9 @@ Rails.application.routes.draw do
   patch "/missions/:id", to: "missions#update", as: :update_mission
   delete "/missions/:id", to: "missions#destroy", as: :destroy_missions
 
-  get "/granchildren", to: "grandchildren#index"
+  get "/grandchildren", to: "grandchildren#index"
   get "/missions/new", to: "grandchildren#new", as: :new_grandchildren
+  get '/grandchildren/:id', to: 'grandchildren#show', as: :show_grandchild
   post "/missions", to: "grandchildren#create", as: :create_grandchildren
 
 end

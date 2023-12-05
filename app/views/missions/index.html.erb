@@ -1,6 +1,7 @@
 <nav>
   <%= link_to 'Descendants Index', descendents_path %>
   <%= link_to 'Missions Index', missions_path %>
+  <%= link_to 'Grandchildren Index', grandchildren_path %>
 </nav>
 
 <h1>These are the list of missions Porters have served in:</h1>
@@ -10,7 +11,7 @@
   <li>Language spoken: <%= mission.mission_language %></li>
   <li>Country: <%= mission.country %></li>
   <li>Number of members baptized: <%= mission.members_baptized %></li>
-  <li>Was this a service mission? <%= mission.foreign_mission? %></li>
+  <li>Was this a foreign mission? <%= mission.foreign_mission? %></li>
   <li>Descendent ID: <%= mission.descendent_id %></li>
   <li><%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %></li>
   <%= link_to "Delete #{mission.mission_name}", destroy_missions_path(mission), id: "delete_#{mission.mission_name}", data: {turbo_method: :delete} %>

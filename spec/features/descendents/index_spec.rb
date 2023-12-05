@@ -136,30 +136,43 @@ RSpec.describe "Descendents Index Page", type: :feature do
       end
     end
 
-    # describe "Extension 2: Search by name (exact match)" do
-    #   xit "will show a text box to filter results by keyword" do
-    #     visit "/descendents"
+    describe "Extension 2: Search by name (exact match)" do
+      it "will show a text box to filter results by keyword" do
+        visit "/descendents"
 
-    #     expect(page).to have_content("Filter Results by Keyword")
-    #   end
+        expect(page).to have_content("Filter results by first or last name")
+      end
 
-    #   xit "will have a search button that returns results to the current page" do
-    #     visit "/descendents"
-    #     Descendent.check_all_values("Porter")
-    #     expect(page).to have_content("Filter")
+      it "will have a search button that returns results to the current page" do
+        visit "/descendents"
+        click_button("Filter")
 
-    #     click_button("Filter")
+        expect(page.current_path).to eq("/descendents")
+      end
 
-    #     expect(page.current_path).to eq("/descendents")
-    #   end
+      it "will only return records that are an exact match of the filter" do
+        amy = Descendent.create(first_name: "Amy", last_name: "Finder", birthday:"06/09/1988", married: true, allergies: false, languages: 1)
+        caroyln = Descendent.create(first_name: "Carolyn", last_name: "Lines", birthday: "09/08/1995", married: false, allergies: true, languages: 1)
+        robert = Descendent.create(first_name: "Robert", last_name: "Lines", birthday: "09/08/1995", married: false, allergies: true, languages: 1)
+        visit "/descendents"
 
-    #   xit "will only return records that are an exact match of the filter" do
-    #     visit "/descendents"
+        fill_in("keyword", with: "Amy")
+        click_button("Filter")
 
-    #     fill_in("keyword", with: "Italy")
+        expect(page).to have_content("Amy Finder")
+        expect(page).to have_no_content("Aaron")
+        expect(page).to have_no_content("Rusty")
+        expect(page).to have_no_content("Lines")
 
-    #     expect(page).to have_content("Porter")
-    #   end
-    # end
+
+        fill_in("keyword", with: "Lines")
+        click_button("Filter")
+        save_and_open_page
+        expect(page).to have_content("Carolyn Lines")
+        expect(page).to have_content("Robert Lines")
+        expect(page).to have_no_content("Amy")
+
+      end
+    end
   end
 end

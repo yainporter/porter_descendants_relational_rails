@@ -1,9 +1,15 @@
 <nav>
   <%= link_to 'Descendants Index', descendents_path %>
   <%= link_to 'Missions Index', missions_path %>
+  <%= link_to 'Grandchildren Index', grandchildren_path %>
 </nav>
 
 <h1>These are the list of descendants from Marlane & Don Porter:</h1>
+<%= form_with url: descendents_path, method: :patch, data: {turbo: :false} do |f| %>
+<%= f.label :filter_results_by_first_or_last_name %>
+<%= f.text_area :keyword %>
+<%= f.submit "Filter" %>
+<% end %>
 <ul>
   <% @descendents.each do |descendent| %>
     <li><%= link_to "#{descendent.full_name}", show_descendent_path(descendent) %> -
@@ -21,10 +27,4 @@
 <p>
   <%= link_to 'New Descendent', "/descendents/new" %> - 
   <%= link_to 'Sort by number of missions', descendents_path(sort: "mission_count") %> -
-  <%= form_with url: descendents_path, method: :patch, data: {turbo: :false} do |f| %>
-  Filter Results by
-  <%= f.label :keyword %>
-  <%= f.text_area :keyword %>
-  <%= f.submit "Filter" %>
-  <% end %>
 </p>

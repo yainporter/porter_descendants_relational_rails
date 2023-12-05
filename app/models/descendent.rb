@@ -1,5 +1,6 @@
 class Descendent < ApplicationRecord
   has_many :missions
+  # has_many :descendents
 
   def full_name
     first_name + " " + last_name
@@ -25,5 +26,15 @@ class Descendent < ApplicationRecord
     Descendent.all.sort_by do |descendent|
       descendent.missions_served
     end.reverse
+  end
+
+  def self.filter_by(keyword)
+    if Descendent.where(first_name: keyword) != []
+      Descendent.where(first_name: keyword)
+    elsif Descendent.where(last_name: keyword) != []
+      Descendent.where(last_name: keyword)
+    else
+      Descendent.all.order(created_at: :desc)
+    end
   end
 end

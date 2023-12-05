@@ -1,6 +1,7 @@
 <nav>
   <%= link_to 'Descendants Index', descendents_path %>
   <%= link_to 'Missions Index', missions_path %>
+  <%= link_to 'Grandchildren Index', grandchildren_path %>
 </nav>
 
 <h1><%= @descendent.full_name %>'s Mission</h1>
@@ -9,7 +10,7 @@
 <p>Language: <%= mission.mission_language %></p>
 <p>Country: <%= mission.country %></p>
 <p>Number of members baptized: <%= mission.members_baptized %></p>
-<p>Was this a service mission? <%= mission.foreign_mission? %></p>
+<p>Was this a foreign mission? <%= mission.foreign_mission? %></p>
 [<%= link_to "Edit #{mission.mission_name}'s Mission Info", edit_mission_path(mission), id: "edit_#{mission.id}_link" %>]
 [<%= link_to "Delete #{mission.mission_name} Mission", destroy_missions_path(mission), data: {turbo_method: :delete}, id: "delete_#{mission.mission_name}" %>]
 <% end %>

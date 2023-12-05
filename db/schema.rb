@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_05_043443) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_05_061420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_043443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
+    t.bigint "grandparent_id"
+    t.index ["grandparent_id"], name: "index_descendents_on_grandparent_id"
     t.index ["parent_id"], name: "index_descendents_on_parent_id"
   end
 
@@ -54,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_043443) do
     t.index ["descendent_id"], name: "index_missions_on_descendent_id"
   end
 
+  add_foreign_key "descendents", "descendents", column: "grandparent_id"
   add_foreign_key "descendents", "descendents", column: "parent_id"
   add_foreign_key "grandchildren", "descendents"
   add_foreign_key "missions", "descendents"
