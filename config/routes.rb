@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   post '/missions', to: 'missions#create', as: :create_mission
   post "/missions/:id", to: "missions#show", as: :post_mission
   patch "/missions/:id", to: "missions#update", as: :update_mission
+  patch "/missions", to: "missions#index"
+
   delete "/missions/:id", to: "missions#destroy", as: :destroy_missions
 
   get "/grandchildren", to: "grandchildren#index"

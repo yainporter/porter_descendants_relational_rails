@@ -1,6 +1,10 @@
 class MissionsController < ApplicationController
   def index
-    @missions = Mission.where(foreign_mission: true)
+    if params[:keyword]
+      @missions = Mission.filter_by(params[:keyword])
+    else
+      @missions = Mission.where(foreign_mission: true)
+    end
   end
 
   def new

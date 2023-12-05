@@ -5,6 +5,11 @@
 </nav>
 
 <h1>These are the list of missions Porters have served in:</h1>
+<%= form_with url: missions_path, method: :patch, data: {turbo: :false} do |f| %>
+<%= f.label :filter_results_by_mission_name_country_or_language %>
+<%= f.text_area :keyword %>
+<%= f.submit "Filter" %>
+<% end %>
 <ul>
   <% @missions.each do |mission| %> 
   <h3><%= mission.mission_name %></h3>
