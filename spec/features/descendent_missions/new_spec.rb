@@ -9,11 +9,10 @@ RSpec.describe "Descendent Missions New Page", type: :feature do
         fill_in("mission_language", with: "Japanese")
         fill_in("country", with: "Japan")
         fill_in("members_baptized", with: "3")
-        choose("nservice_mission")
+        choose("yforeign_mission")
         click_button
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")
-        save_and_open_page
         expect(page).to have_content("Tokyo Japan")
         expect(page).to have_content("Japanese")
         expect(page).to have_content("Japanese")

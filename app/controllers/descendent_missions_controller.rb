@@ -21,11 +21,10 @@ class DescendentMissionsController < ApplicationController
   end
 
   def mission_params
-    params.permit(:mission_name, :mission_language, :country, :members_baptized, :service_mission)
+    params.permit(:mission_name, :mission_language, :country, :members_baptized, :foreign_mission)
   end
 
   def edit
-    require 'pry'; binding.pry
   end
 
   def update

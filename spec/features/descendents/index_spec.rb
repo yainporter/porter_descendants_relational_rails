@@ -4,7 +4,7 @@ RSpec.describe "Descendents Index Page", type: :feature do
   before(:each) do
     @aaron = Descendent.create(first_name: "Aaron", last_name: "Porter", married: true, grandchildren: true)
     @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
-    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
+    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, foreign_mission: false)
   end
 
   describe "when I visit '/descendents'" do ### MAKE THIS A FEATURE DESCERIPTION ####
@@ -80,7 +80,7 @@ RSpec.describe "Descendents Index Page", type: :feature do
     it "will have a delete link next to every parent" do
       ####### How do I test for every parent? #######
       visit "/descendents"
-      save_and_open_page
+
       expect(page).to have_content("Delete")
     end
 
@@ -135,5 +135,31 @@ RSpec.describe "Descendents Index Page", type: :feature do
         expect(page).to have_content("Number of missions: 3")
       end
     end
+
+    # describe "Extension 2: Search by name (exact match)" do
+    #   xit "will show a text box to filter results by keyword" do
+    #     visit "/descendents"
+
+    #     expect(page).to have_content("Filter Results by Keyword")
+    #   end
+
+    #   xit "will have a search button that returns results to the current page" do
+    #     visit "/descendents"
+    #     Descendent.check_all_values("Porter")
+    #     expect(page).to have_content("Filter")
+
+    #     click_button("Filter")
+
+    #     expect(page.current_path).to eq("/descendents")
+    #   end
+
+    #   xit "will only return records that are an exact match of the filter" do
+    #     visit "/descendents"
+
+    #     fill_in("keyword", with: "Italy")
+
+    #     expect(page).to have_content("Porter")
+    #   end
+    # end
   end
 end

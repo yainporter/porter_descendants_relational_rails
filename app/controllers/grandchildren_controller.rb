@@ -1,31 +1,37 @@
-class GrandchildrenController < ApplicationController
-  def index
-    @grandchildren = Grandchild.all
-  end
+# class GrandchildrenController < ApplicationController
+#   def index
+#     @grandchildren = Grandchild.all
+#   end
 
-  def new
+#   def new
 
-  end
+#   end
 
-  def create
-    grandchild = Descendent.create(descendent_params)
+#   def create
+#     grandchild = Descendent.grandchildren.create(grandchild_params)
 
-    redirect_to "/descendents"
-  end
+#     redirect_to "/descendents"
+#   end
 
-  def edit
+#   def edit
 
-  end
+#   end
 
-  def update
+#   def update
 
-  end
+#   end
 
-  def show
+#   def show
 
-  end
+#   end
 
-  def destroy
+#   def destroy
 
-  end
-end
+#   end
+
+#   private
+
+#   def grandchild_params
+#     params.permit(:descendent_id, :name, :lives_at_home, :age, :hobbies, :location, :fun_fact)
+#   end
+# end

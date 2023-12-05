@@ -4,8 +4,8 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
   before(:each) do
     @aaron = Descendent.create(first_name: "Aaron", last_name: "Porter", married: true, grandchildren: true)
     @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
-    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
-    @spain = @rusty.missions.create(mission_name:"Madrid, Spain", mission_language: "Italian", country: "Spain", members_baptized: 1, service_mission: false)
+    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, foreign_mission: false)
+    @spain = @rusty.missions.create(mission_name:"Madrid, Spain", mission_language: "Italian", country: "Spain", members_baptized: 1, foreign_mission: false)
   end
 
   describe "As a user" do
@@ -19,7 +19,7 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
         expect(page).to have_content(@italy.mission_language)
         expect(page).to have_content(@italy.country)
         expect(page).to have_content(@italy.members_baptized)
-        expect(page).to have_content(@italy.service_mission?)
+        expect(page).to have_content(@italy.foreign_mission?)
       end
 
       it "Will have a link at the top of the page that takes me to the Missions Index" do
@@ -97,7 +97,7 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
 
       it "Will take me back to the current index page with only the records that meet the threshold from the submit button" do
         #### US 21 ####
-        @rusty.missions.create(mission_name:"Tokyo", mission_language: "Italian", country: "Spain", members_baptized: 5, service_mission: false)
+        @rusty.missions.create(mission_name:"Tokyo", mission_language: "Italian", country: "Spain", members_baptized: 5, foreign_mission: false)
         visit "/descendents/#{@rusty.id}/missions"
 
         expect(page).to have_content("Rome Italy")
@@ -114,8 +114,8 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
       end
 
       it "will show a link to delete each mission and redirect to '/missions" do
-        mission = @rusty.missions.create(mission_name:"Russia Mission", mission_language: "English", country: "USA", members_baptized: 11, service_mission: true)
-        mission_2 = @rusty.missions.create(mission_name:"Random Mission 2", mission_language: "English", country: "USA", members_baptized: 11, service_mission: true)
+        mission = @rusty.missions.create(mission_name:"Russia Mission", mission_language: "English", country: "USA", members_baptized: 11, foreign_mission: true)
+        mission_2 = @rusty.missions.create(mission_name:"Random Mission 2", mission_language: "English", country: "USA", members_baptized: 11, foreign_mission: true)
         visit "/descendents/#{@rusty.id}/missions"
 
         expect(page).to have_content("Russia Mission")

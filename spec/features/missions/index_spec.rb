@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe "Missions Index Page", type: :feature do
   before(:each) do
     @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
-    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
-    @spain = @rusty.missions.create(mission_name:"Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, service_mission: false)
-    @gilbert = @rusty.missions.create(mission_name:"Gilbert", mission_language: "English", country: "USA", members_baptized: 11, service_mission: true)
+    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, foreign_mission: false)
+    @spain = @rusty.missions.create(mission_name:"Spain", mission_language: "Spanish", country: "Spain", members_baptized: 11, foreign_mission: false)
+    @gilbert = @rusty.missions.create(mission_name:"Gilbert", mission_language: "English", country: "USA", members_baptized: 11, foreign_mission: true)
   end
   describe "As a user" do
     describe "When I visit /missions" do
@@ -63,7 +63,7 @@ RSpec.describe "Missions Index Page", type: :feature do
       it "will have a link next to every mission that will delete the mission" do
 
         #### Untested every mission with delete #####
-        mission = @rusty.missions.create(mission_name:"Random Mission", mission_language: "English", country: "USA", members_baptized: 11, service_mission: true)
+        mission = @rusty.missions.create(mission_name:"Random Mission", mission_language: "English", country: "USA", members_baptized: 11, foreign_mission: true)
         visit "/missions"
 
         expect(page).to have_content("Random Mission")

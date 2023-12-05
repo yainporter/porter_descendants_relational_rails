@@ -18,4 +18,13 @@
   <% end %>
 </ul>
 
-<p><%= link_to 'New Descendent', "/descendents/new" %> - <%= link_to 'Sort by number of missions', descendents_path(sort: "mission_count") %></p>
+<p>
+  <%= link_to 'New Descendent', "/descendents/new" %> - 
+  <%= link_to 'Sort by number of missions', descendents_path(sort: "mission_count") %> -
+  <%= form_with url: descendents_path, method: :patch, data: {turbo: :false} do |f| %>
+  Filter Results by
+  <%= f.label :keyword %>
+  <%= f.text_area :keyword %>
+  <%= f.submit "Filter" %>
+  <% end %>
+</p>

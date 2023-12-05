@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Missions Edit Page", type: :feature do
   before(:each) do
     @rusty = Descendent.create(first_name: "Rusty", last_name: "Porter", birthday:"06/09/1988", married: true)
-    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, service_mission: false)
+    @italy = @rusty.missions.create(mission_name:"Rome Italy", mission_language: "Italian", country: "Italy", members_baptized: 1, foreign_mission: false)
   end
 
   describe "When I visit '/missions/:id/edit'"

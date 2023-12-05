@@ -1,3 +1,3 @@
-class Grandchild < ApplicationRecord
-  belongs_to :descendent
-end
+# class Grandchild < ApplicationRecord
+#   belongs_to :descendent
+# end

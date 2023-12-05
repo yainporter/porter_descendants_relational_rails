@@ -1,8 +1,8 @@
 class Mission < ApplicationRecord
   belongs_to :descendent
 
-  def service_mission?
-    service_mission == true ? "Yes" : "No"
+  def foreign_mission?
+    foreign_mission == true ? "Yes" : "No"
   end
 
   # def self.find_foreign_key(descendent)

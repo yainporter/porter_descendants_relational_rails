@@ -2,6 +2,9 @@ class DescendentsController < ApplicationController
   def index
     if params[:sort]
       @descendents = Descendent.sort_by_number_of_missions
+    # elsif params[:keyword]
+    #   require 'pry'; binding.pry
+    #   @descendents = Descendent.where(mission_name: params[:keyword])
     else
       @descendents = Descendent.all.order(created_at: :desc)
     end
@@ -15,10 +18,6 @@ class DescendentsController < ApplicationController
     descendent = Descendent.create(descendent_params)
 
     redirect_to "/descendents"
-  end
-
-  def descendent_params
-    params.permit(:first_name, :last_name, :birthday, :allergies, :languages, :married, :grandchildren)
   end
 
   def edit
@@ -35,5 +34,11 @@ class DescendentsController < ApplicationController
   def show
     @descendent = Descendent.find(params[:id])
     @missions_served = @descendent.missions.count
+  end
+
+  private
+
+  def descendent_params
+    params.permit(:first_name, :last_name, :birthday, :allergies, :languages, :married, :grandchildren)
   end
 end

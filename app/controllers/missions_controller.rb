@@ -1,6 +1,6 @@
 class MissionsController < ApplicationController
   def index
-    @missions = Mission.where(service_mission: true)
+    @missions = Mission.where(foreign_mission: true)
   end
 
   def new
@@ -14,12 +14,12 @@ class MissionsController < ApplicationController
   def update
     mission = Mission.find(params[:id])
     mission.update(mission_params)
-    
+
     redirect_to "/missions/#{mission.id}"
   end
 
   def mission_params
-    params.permit(:mission_name, :mission_language, :country, :members_baptized, :service_mission)
+    params.permit(:mission_name, :mission_language, :country, :members_baptized, :foreign_mission)
   end
 
   def show
