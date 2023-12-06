@@ -5,7 +5,7 @@ class DescendentsController < ApplicationController
     elsif params[:keyword].present?
       @descendents = Descendent.filter_by(params[:keyword])
     else
-      @descendents = Descendent.all.order(created_at: :desc)
+      @descendents = Descendent.sort_by_creation
     end
   end
 

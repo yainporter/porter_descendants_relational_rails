@@ -28,6 +28,10 @@ class Descendent < ApplicationRecord
     end.reverse
   end
 
+  def self.sort_by_creation
+    Descendent.all.order(created_at: :desc)
+  end
+
   def self.filter_by(keyword)
     # if Descendent.where(first_name: keyword) != []
     #   Descendent.where(first_name: keyword)

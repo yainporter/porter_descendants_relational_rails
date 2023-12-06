@@ -92,7 +92,6 @@ RSpec.describe "Descendent Missions Index Page", type: :feature do
         visit "/descendents/#{@rusty.id}/missions"
 
         expect(page).to have_button("Filter")
-        expect(page).to has_field?()
       end
 
       it "Will take me back to the current index page with only the records that meet the threshold from the submit button" do

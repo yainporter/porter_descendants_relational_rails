@@ -16,4 +16,12 @@ class Mission < ApplicationRecord
       Mission.all.order(created_at: :desc)
     end
   end
+
+  def self.order_by_mission_name
+    Mission.order(:mission_name)
+  end
+
+  def self.filter_by_members_baptized (params)
+    Mission.where("members_baptized > ?", params)
+  end
 end
