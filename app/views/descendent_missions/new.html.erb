@@ -2,6 +2,8 @@
   <%= link_to 'Descendants Index', descendents_path %>
   <%= link_to 'Missions Index', missions_path %>
   <%= link_to 'Grandchildren Index', grandchildren_path %>
+  <%= link_to 'Great-grandchildren', great_grandchildren_path %>
+
 </nav>
   
 <form action="/descendents/<%= @descendent.id %>/missions" method="POST">
@@ -20,7 +22,7 @@
   <label for="members_baptized">Number of members baptized:</label><br>
   <input type="integer" name="members_baptized" id="members_baptized"/><br/>
 
-  <p>Service mission?</p>
+  <p>Foreign mission?</p>
   <input type="radio" name="foreign_mission" value="true" id="yforeign_mission">
   <label for="foreign_mission">Yes</label><br>
   <input type="radio" name="foreign_mission" value="false" id="nforeign_mission">

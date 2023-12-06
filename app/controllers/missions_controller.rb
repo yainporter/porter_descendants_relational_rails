@@ -3,7 +3,9 @@ class MissionsController < ApplicationController
     if params[:keyword]
       @missions = Mission.filter_by(params[:keyword])
     else
-      @missions = Mission.where(foreign_mission: true)
+      # This is turned on to pass User Story
+      # @missions = Mission.where(foreign_mission: true)
+      @missions = Mission.all
     end
   end
 

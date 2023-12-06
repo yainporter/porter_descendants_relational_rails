@@ -35,4 +35,6 @@ Rails.application.routes.draw do
   get '/grandchildren/:id', to: 'grandchildren#show', as: :show_grandchild
   post "/missions", to: "grandchildren#create", as: :create_grandchildren
 
+  get "/great_grandchildren", to: "great_grandchildren#index"
+
 end

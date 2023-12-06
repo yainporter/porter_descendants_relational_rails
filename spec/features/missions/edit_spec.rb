@@ -14,7 +14,7 @@ RSpec.describe "Missions Edit Page", type: :feature do
       expect(page).to have_content("Mission language:")
       expect(page).to have_content("Country:")
       expect(page).to have_content("Number of members baptized:")
-      expect(page).to have_content("Service mission?")
+      expect(page).to have_content("Foreign mission?")
     end
 
     it "will send a `PATCH` request to '/missions/:id' and update the info, redirecting to /missions/:id " do

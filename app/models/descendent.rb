@@ -22,6 +22,13 @@ class Descendent < ApplicationRecord
     missions.count
   end
 
+  def self.destroy_descendent_and_missions(params_id)
+    descendent = Descendent.find(params_id)
+    descendent.missions.each{|mission| mission.destroy}
+    descendent.destroy
+  end
+  
+
   def self.sort_by_number_of_missions
     Descendent.all.sort_by do |descendent|
       descendent.missions_served

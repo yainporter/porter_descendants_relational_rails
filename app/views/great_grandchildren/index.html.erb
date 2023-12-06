@@ -1,0 +1,14 @@
+<nav>
+  <%= link_to 'Descendants Index', descendents_path %>
+  <%= link_to 'Missions Index', missions_path %>
+  <%= link_to 'Grandchildren Index', grandchildren_path %>
+  <%= link_to 'Great-grandchildren', great_grandchildren_path %>
+</nav>
+
+<h1>List of Marlane & Don Porter's Great-grandchildren</h1>
+
+<% @great_grandchildren.each do |grandchild| %>
+<ul>
+  <li><%= link_to "#{grandchild.first_name}", show_grandchild_path(grandchild) %></li>
+</ul>
+<% end %>
