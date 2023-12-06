@@ -27,7 +27,7 @@ class Descendent < ApplicationRecord
     descendent.missions.each{|mission| mission.destroy}
     descendent.destroy
   end
-  
+
 
   def self.sort_by_number_of_missions
     Descendent.all.sort_by do |descendent|
@@ -40,14 +40,6 @@ class Descendent < ApplicationRecord
   end
 
   def self.filter_by(keyword)
-    # if Descendent.where(first_name: keyword) != []
-    #   Descendent.where(first_name: keyword)
-    # elsif Descendent.where(last_name: keyword) != []
-    #   Descendent.where(last_name: keyword)
-    # else
-    #   Descendent.all.order(created_at: :desc)
-    # end
-
     Descendent.where("first_name = ? OR last_name = ?", keyword, keyword)
   end
 end

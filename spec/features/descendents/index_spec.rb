@@ -140,7 +140,7 @@ RSpec.describe "Descendents Index Page", type: :feature do
       it "will show a text box to filter results by keyword" do
         visit "/descendents"
 
-        expect(page).to have_content("Filter results by first or last name")
+        expect(page).to have_content("Filter results by first or last name:")
       end
 
       it "will have a search button that returns results to the current page" do

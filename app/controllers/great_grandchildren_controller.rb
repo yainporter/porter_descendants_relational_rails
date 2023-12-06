@@ -1,4 +1,4 @@
-class GrandchildrenController < ApplicationController
+class GreatGrandchildrenController < ApplicationController
   def index
     @great_grandchildren = Descendent.where.not(grandparent_id: nil)
   end
@@ -14,3 +14,4 @@ class GrandchildrenController < ApplicationController
   def show
     @great_grandchild = Descendent.find(params[:id])
   end
+end

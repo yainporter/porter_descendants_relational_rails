@@ -21,7 +21,7 @@ class MissionsController < ApplicationController
     mission = Mission.find(params[:id])
     mission.update(mission_params)
 
-    redirect_to "/missions/#{mission.id}"
+    redirect_to "show_mission_path"
   end
 
   def mission_params

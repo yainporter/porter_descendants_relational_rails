@@ -8,7 +8,7 @@
 
 <h1>These are the list of descendants from Marlane & Don Porter:</h1>
 <%= form_with url: descendents_path, method: :get, data: {turbo: :false} do |f| %>
-<%= f.label :filter_results_by_first_or_last_name %>
+<%= f.label :keyword, "Filter results by first or last name:" %>
 <%= f.text_area :keyword %>
 <%= f.submit "Filter" %>
 <% end %>

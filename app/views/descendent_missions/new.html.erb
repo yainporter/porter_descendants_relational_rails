@@ -3,30 +3,47 @@
   <%= link_to 'Missions Index', missions_path %>
   <%= link_to 'Grandchildren Index', grandchildren_path %>
   <%= link_to 'Great-grandchildren', great_grandchildren_path %>
-
 </nav>
-  
-<form action="/descendents/<%= @descendent.id %>/missions" method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<br/>
+<%= form_with url: create_descendent_mission_path do |f| %>
+  <%= f.label :mission_name, 'Mission name:' %>
+  <%= f.text_field :mission_name %> <br/>
+  <%= f.label :mission_language, 'Mission language:' %>
+  <%= f.text_field :mission_language %> <br/>
+  <%= f.label :country, 'Country:' %>
+  <%= f.text_field :country %> <br/>
+  <%= f.label :members_baptized, 'Number of members baptized:' %>
+  <%= f.number_field :members_baptized %> </br>
+  Foreign mission?
+  <%= f.label :yes, 'Yes' %>
+  <%= radio_button_tag :foreign_mission, 'yes', true, :id => "yes" %>
+  <%= f.label :no, 'No' %>
+  <%= radio_button_tag :foreign_mission, "no", false, :id => "no" %>
+  <%= f.submit "Create Mission" %>
+<% end %>
 
-  <p>Create a new mission:</p>
-  <label for="mission_name">Mission name:</label><br>
-  <input type="text" name="mission_name" id="mission_name"/><br/>
 
-  <label for="mission_language">Mission language:</label><br>
-  <input type="text" name="mission_language" id="mission_language"/><br/>
+<!-- # <form action="/descendents/<%= @descendent.id %>/missions" method="POST">
+#   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label for="country">Country:</label><br>
-  <input type="text" name="country" id="country"/><br/>
+#   <p>Create a new mission:</p>
+#   <label for="mission_name">Mission name:</label><br>
+#   <input type="text" name="mission_name" id="mission_name"/><br/>
 
-  <label for="members_baptized">Number of members baptized:</label><br>
-  <input type="integer" name="members_baptized" id="members_baptized"/><br/>
+#   <label for="mission_language">Mission language:</label><br>
+#   <input type="text" name="mission_language" id="mission_language"/><br/>
 
-  <p>Foreign mission?</p>
-  <input type="radio" name="foreign_mission" value="true" id="yforeign_mission">
-  <label for="foreign_mission">Yes</label><br>
-  <input type="radio" name="foreign_mission" value="false" id="nforeign_mission">
-  <label for="foreign_mission">No</label><br>
+#   <label for="country">Country:</label><br>
+#   <input type="text" name="country" id="country"/><br/>
 
-  <input type="submit" value="Create Mission">
-</form>
+#   <label for="members_baptized">Number of members baptized:</label><br>
+#   <input type="integer" name="members_baptized" id="members_baptized"/><br/>
+
+#   <p>Foreign mission?</p>
+#   <input type="radio" name="foreign_mission" value="true" id="yforeign_mission">
+#   <label for="foreign_mission">Yes</label><br>
+#   <input type="radio" name="foreign_mission" value="false" id="nforeign_mission">
+#   <label for="foreign_mission">No</label><br>
+
+#   <input type="submit" value="Create Mission">
+# </form> -->

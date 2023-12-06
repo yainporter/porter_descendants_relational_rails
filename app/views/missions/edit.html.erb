@@ -3,33 +3,28 @@
   <%= link_to 'Missions Index', missions_path %>
   <%= link_to 'Grandchildren Index', grandchildren_path %>
   <%= link_to 'Great-grandchildren', great_grandchildren_path %>
-
 </nav>
-<!-- 
-########### Originally, I had my <form> as PATCH, and no input PATCH, everything continued to work, but test did not run. Why is this?</form> ######### -->
-
-<form action="/missions/<%= @mission.id %>" method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH"/>
-
-  <p>Edit mission:</p>
-  <label for="mission_name">Mission name:</label><br>
-  <input type="text" name="mission_name" id="mission_name" value=<%= @mission.mission_name %>><br/>
-
-  <label for="mission_language">Mission language:</label><br>
-  <input type="text" name="mission_language" id="mission_language" value=<%= @mission.mission_language %>><br/>
-
-  <label for="country">Country:</label><br>
-  <input type="text" name="country" id="country" value=<%= @mission.country%>><br/>
-
-  <label for="members_baptized">Number of members baptized:</label><br>
-  <input type="integer" name="members_baptized" id="members_baptized" value=<%= @mission.members_baptized %>><br/>
-
-  <p>Foreign mission?</p>
-  <input type="radio" name="foreign_mission" value="true" id="yforeign_mission">
-  <label for="foreign_mission">Yes</label><br>
-  <input type="radio" name="foreign_mission" value="false" id="nforeign_mission" checked=true>
-  <label for="foreign_mission">No</label><br>
-
-  <input type="submit" value="Edit Mission">
-</form>
+<br/>
+<%= form_with url: "/missions/:id/" do |f| %>
+  <%= f.label :mission_name, 'Mission name:' %>
+  <%= f.text_field :mission_name, value: @mission.mission_name %> <br/>
+  <%= f.label :mission_language, 'Mission language:' %>
+  <%= f.text_field :mission_language, value: @mission.mission_language %> <br/>
+  <%= f.label :country, 'Country:' %>
+  <%= f.text_field :country, value: @mission.country %> <br/>
+  <%= f.label :members_baptized, 'Number of members baptized:' %>
+  <%= f.number_field :members_baptized, value: @mission.members_baptized %> </br>
+  Foreign mission?
+  <% if @mission.foreign_mission == true %>
+  <%= f.label :yes, 'Yes' %>
+  <%= radio_button_tag :foreign_mission, 'yes', true, :checked => true, :id => "yes" %>
+  <%= f.label :no, 'No' %>
+  <%= radio_button_tag :foreign_mission, "no", false, :id => "no" %>
+  <% else %>
+  <%= f.label :yes, 'Yes' %>
+  <%= radio_button_tag :foreign_mission, "yes", true, :id => "yes" %>
+  <%= f.label :no, 'No' %>
+  <%= radio_button_tag :foreign_mission, 'no', false, :checked => true, :id => "no"  %>
+  <% end %>
+  <%= f.submit "Edit Mission" %>
+<% end %>

@@ -9,7 +9,7 @@ RSpec.describe "Descendent Missions New Page", type: :feature do
         fill_in("mission_language", with: "Japanese")
         fill_in("country", with: "Japan")
         fill_in("members_baptized", with: "3")
-        choose("yforeign_mission")
+        choose(:yes)
         click_button
 
         expect(page.current_path).to eq("/descendents/#{@rusty.id}/missions")

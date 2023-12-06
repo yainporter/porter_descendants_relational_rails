@@ -15,7 +15,7 @@ class DescendentMissionsController < ApplicationController
 
   def create
     descendent = Descendent.find(params[:id])
-    mission = descendent.missions.create(mission_params)
+    @mission = descendent.missions.create(mission_params)
 
     redirect_to "/descendents/#{descendent.id}/missions"
   end
@@ -25,6 +25,7 @@ class DescendentMissionsController < ApplicationController
   end
 
   def edit
+    
   end
 
   def update
