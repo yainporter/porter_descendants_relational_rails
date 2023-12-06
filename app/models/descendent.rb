@@ -29,12 +29,14 @@ class Descendent < ApplicationRecord
   end
 
   def self.filter_by(keyword)
-    if Descendent.where(first_name: keyword) != []
-      Descendent.where(first_name: keyword)
-    elsif Descendent.where(last_name: keyword) != []
-      Descendent.where(last_name: keyword)
-    else
-      Descendent.all.order(created_at: :desc)
-    end
+    # if Descendent.where(first_name: keyword) != []
+    #   Descendent.where(first_name: keyword)
+    # elsif Descendent.where(last_name: keyword) != []
+    #   Descendent.where(last_name: keyword)
+    # else
+    #   Descendent.all.order(created_at: :desc)
+    # end
+
+    Descendent.where("first_name = ? OR last_name = ?", keyword, keyword)
   end
 end

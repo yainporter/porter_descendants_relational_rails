@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get "/descendents/new", to: "descendents#new", as: :new_descendent
   post "/descendents", to: "descendents#create", as: :create_descendent
   get '/descendents/:id', to: 'descendents#show', as: :show_descendent
-  patch "/descendents", to: "descendents#index"
   patch 'descendents/:id', to: 'descendents#update', as: :update_descendent
   get '/descendents/:id/edit', to: 'descendents#edit', as: :edit_descendent
 
@@ -28,7 +27,6 @@ Rails.application.routes.draw do
   post '/missions', to: 'missions#create', as: :create_mission
   post "/missions/:id", to: "missions#show", as: :post_mission
   patch "/missions/:id", to: "missions#update", as: :update_mission
-  patch "/missions", to: "missions#index"
 
   delete "/missions/:id", to: "missions#destroy", as: :destroy_missions
 

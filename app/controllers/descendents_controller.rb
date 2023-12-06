@@ -1,8 +1,8 @@
 class DescendentsController < ApplicationController
   def index
-    if params[:sort]
+    if params[:sort].present?
       @descendents = Descendent.sort_by_number_of_missions
-    elsif params[:keyword]
+    elsif params[:keyword].present?
       @descendents = Descendent.filter_by(params[:keyword])
     else
       @descendents = Descendent.all.order(created_at: :desc)

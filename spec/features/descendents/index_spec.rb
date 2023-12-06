@@ -167,7 +167,6 @@ RSpec.describe "Descendents Index Page", type: :feature do
 
         fill_in("keyword", with: "Lines")
         click_button("Filter")
-        save_and_open_page
         expect(page).to have_content("Carolyn Lines")
         expect(page).to have_content("Robert Lines")
         expect(page).to have_no_content("Amy")

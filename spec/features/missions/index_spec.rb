@@ -43,7 +43,6 @@ RSpec.describe "Missions Index Page", type: :feature do
       it "Will only show the boolean column when the value is `true`" do
 
         spain = @rusty.missions.create(mission_name:"Spaino", mission_language: "Spanish", country: "Spain", members_baptized: 11, foreign_mission: false)
-        italy = @rusty.missions.create(mission_name:"Italyi", mission_language: "Italian", country: "Italy", members_baptized: 11, foreign_mission: false)
 
         visit "/missions"
 
@@ -106,7 +105,6 @@ RSpec.describe "Missions Index Page", type: :feature do
 
         fill_in("keyword", with: "Gilbert")
         click_button("Filter")
-        save_and_open_page
         expect(page).to have_no_content("Spain")
         expect(page).to have_content("Gilbert")
         expect(page).to have_no_content("Italy")
